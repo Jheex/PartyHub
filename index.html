@@ -1,99 +1,297 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PartyHub</title>
+    <title>PartyHub | Jogos Online</title>
 
     <style>
-        body{
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
             background-color: #030712;
+            color: #FFFFFF;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* HEADER */
+
+        header {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 7%;
+            max-width: 1600px;
+            margin: auto;
+        }
+
+        .logo h2 {
+            font-size: 28px;
+            margin: 0;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            background: linear-gradient(90deg, #8B5CF6, #06B6D4);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: #AAB3C5;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #A78BFA;
+        }
+
+        .search-button {
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            color: #C4B5FD;
+            padding: 10px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .search-button:hover {
+            background: #7C3AED;
+            color: white;
+        }
+
+        /* HERO */
+
+        .hero {
+            max-width: 1600px;
+            margin: auto;
+            padding: 75px 7% 85px;
+        }
+
+        .hero-label {
+            display: inline-block;
+            color: #C4B5FD;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            max-width: 700px;
+            margin: 0 0 18px;
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #A78BFA, #22D3EE);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            color: #94A3B8;
+            font-size: 17px;
+            line-height: 1.7;
+            max-width: 550px;
+            margin-bottom: 30px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            background: linear-gradient(90deg, #7C3AED, #4F46E5);
+            color: white;
+            text-decoration: none;
+            padding: 14px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.35);
+        }
+
+        /* JOGOS */
+
+        .games-section {
+            padding: 20px 7% 70px;
+            max-width: 1600px;
+            margin: auto;
+        }
+
+        .section-title {
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #64748B;
             margin: 0;
         }
 
-        header{
-            font-family: fantasy;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            padding: 10px;
-        }
-
-        .games-grid{
+        .games-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            margin: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
         }
 
-        .games-card{
+        .games-card {
             color: aliceblue;
-            background: rgb(60, 60, 61);
-            border: 10px;
-            border-radius: 10px;
-            margin: 20px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 15px;
+            overflow: hidden;
             text-align: center;
-            cursor: pointer
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .games-card:hover {
+            transform: translateY(-6px);
+            background: rgba(255, 255, 255, 0.11);
+            border-color: rgba(139, 92, 246, 0.5);
         }
 
         .game-image {
             width: 100%;
-            height: 200px;
+            height: 190px;
             overflow: hidden;
-            border-radius: 8px;
         }
 
-        .game-image img{
+        .game-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: 0.4s;
         }
 
-        #letra1{
-            color: rgb(4, 196, 255);
+        .games-card:hover .game-image img {
+            transform: scale(1.05);
         }
 
-        #letra2{
-            color: orange;
+        .games-card h3 {
+            margin: 0;
+            padding: 17px 10px;
+            font-size: 17px;
         }
-        #letra3{
-            color: rgb(255, 0, 0);
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: #64748B;
+            font-size: 13px;
         }
-        #letra4{
-            color: rgb(4, 230, 11);
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 1000px) {
+            .games-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
-        #letra5{
-            color: rgb(131, 255, 234);
-        }
-        #letra6{
-            color: rgb(255, 0, 0);
-        }
-        #letra7{
-            color: orange;
-        }
-        #letra8{
-            color: rgb(4, 196, 255);
+
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .nav-links {
+                gap: 18px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 50px 7%;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .game-image {
+                height: 220px;
+            }
         }
 
     </style>
 </head>
 
 <body>
+
+    <!-- HEADER -->
+
     <header>
-        <h2 id="titulo">
-                <span id="letra1">P</span>
-                <span id="letra2">A</span>
-                <span id="letra3">R</span>
-                <span id="letra4">T</span>
-                <span id="letra5">Y</span>
-                <span id="letra6">H</span>
-                <span id="letra7">U</span>
-                <span id="letra8">B</span>
-            </h2>
+
+        <nav class="navbar">
+
+            <div class="logo">
+                <h2>Party<span>Hub</span></h2>
+                
+            </div>
+
+            <div class="nav-links">
+                <a href="https://Jheex.github.io" class="search-button" type="button">
+                    Acessar Portfólio
+                </a>
+            </div>
+        </nav>
+
     </header>
 
-    <section>
+    <!-- LISTA DE JOGOS -->
+
+    <section class="games-section" id="jogos">
+
+        <div class="section-title">
+            <h2>Explore nossos jogos</h2>
+            <p>Escolha seu próximo desafio.</p>
+        </div>
+
         <div class="games-grid">
+
             <article class="games-card">
                 <div class="game-image">
                     <img src="jogos/termo.png" alt="Termo">
@@ -149,11 +347,16 @@
                 </div>
                 <h3>Snake</h3>
             </article>
+
         </div>
 
     </section>
 
-    
-    
+    <!-- SOBRE -->
+
+    <footer id="sobre">
+        <p>© 2026 PartyHub — Diversão para todos os momentos.</p>
+    </footer>
+
 </body>
 </html>
