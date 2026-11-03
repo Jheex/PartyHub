@@ -7,7 +7,7 @@
 
     <style>
         body{
-            background-color: rgb(34, 1, 100);
+            background-color: #030712;
             margin: 0;
         }
 
@@ -22,7 +22,8 @@
 
         .games-grid{
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(6, 1fr);
+            margin: 30px;
         }
 
         .games-card{
@@ -30,10 +31,16 @@
             background: rgb(60, 60, 61);
             border: 10px;
             border-radius: 10px;
-            padding: 10px;
             margin: 20px;
             text-align: center;
             cursor: pointer
+        }
+
+        .game-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
         }
 
         .game-image img{
@@ -91,31 +98,57 @@
                 <div class="game-image">
                     <img src="jogos/termo.png" alt="Termo">
                 </div>
-
                 <h3>Termo</h3>
             </article>
 
             <article class="games-card">
                 <div class="game-image">
-                    <img src="jogos/xadrez.png" alt="Termo">
+                    <img src="jogos/xadrez.png" alt="Xadrez">
                 </div>
-                
                 <h3>Xadrez</h3>
             </article>
 
-            <article class="games-card"><h3>Sequence</h3></article>
+            <article class="games-card">
+                <div class="game-image">
+                    <img src="jogos/labirinto.png" alt="Labirinto">
+                </div>
+                <h3>Labirinto</h3>
+            </article>
 
-            <article class="games-card"><h3>Labirinto</h3></article>
+            <article class="games-card">
+                <div class="game-image">
+                    <img src="jogos/nonograma.png" alt="Nonograma">
+                </div>
+                <h3>Nonograma</h3>
+            </article>
 
-            <article class="games-card"><h3>Nonograma</h3></article>
+            <article class="games-card">
+                <div class="game-image">
+                    <img src="jogos/sudoku.png" alt="Sudoku">
+                </div>
+                <h3>Sudoku</h3>
+            </article>
 
-            <article class="games-card"><h3>Sudoku</h3></article>
+            <article class="games-card">
+                <div class="game-image">
+                    <img src="jogos/cacapalavras.png" alt="Caça Palavras">
+                </div>
+                <h3>Caça Palavras</h3>
+            </article>
 
-            <article class="games-card"><h3>Caça Palavras</h3></article>
+            <article class="games-card">
+                <div class="game-image">
+                    <img src="jogos/cores.png" alt="Cores">
+                </div>
+                <h3>Cores</h3>
+            </article>
 
-            <article class="games-card"><h3>Cores</h3></article>
-
-            <article class="games-card"><h3>Snake</h3></article>
+            <article class="games-card">
+                <div class="game-image">
+                    <img src="jogos/snake.png" alt="Snake">
+                </div>
+                <h3>Snake</h3>
+            </article>
         </div>
 
     </section>
