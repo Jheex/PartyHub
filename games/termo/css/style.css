@@ -498,68 +498,186 @@ input.absent {
     color: #B59F3B;
 }
 
-/* =========================================
-   11. TECLADO VIRTUAL
-========================================= */
+/* ==========================================
+   TECLADO VIRTUAL - DESIGN MODERNO
+========================================== */
 
 .teclado {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    margin: 20px auto 30px;
-    padding: 0 10px;
+
+    gap: 9px;
+    margin: 10px auto 16px;
+    padding: 12px 14px;
+
+    background: rgba(20, 26, 45, 0.45);
+    border: 1px solid rgba(160, 160, 255, 0.08);
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
 }
 
 .linha-teclado {
     display: flex;
     justify-content: center;
-    gap: 6px;
+    gap: 7px;
 }
 
+/* TECLAS */
+
 .tecla {
-    width: 42px;
-    height: 52px;
+    width: clamp(27px, min(4.5vw, 5.5vh), 44px);
+    height: clamp(36px, 5.8vh, 50px);
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background: #30374D;
-    border: none;
-    border-radius: 6px;
+    background: linear-gradient(
+        145deg,
+        #222D47,
+        #182239
+    );
 
-    color: #FFFFFF;
-    font-size: 15px;
-    font-weight: bold;
+    border: 1px solid rgba(150, 170, 220, 0.12);
+    border-radius: 9px;
 
-    transition: background-color 0.4s ease,
-                transform 0.2s ease;
+    color: #DCE5FA;
+    font-family: inherit;
+    font-size: clamp(11px, 2vh, 15px);
+    font-weight: 700;
+
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+
+    box-shadow:
+        0 3px 0 #10182B,
+        0 5px 10px rgba(0, 0, 0, 0.18);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.12s ease,
+        color 0.2s ease;
 }
+
+/* EFEITO AO PASSAR O MOUSE */
+
+.tecla:hover {
+    background: #293958;
+    border-color: rgba(57, 133, 247, 0.45);
+    color: #FFFFFF;
+
+    box-shadow:
+        0 0 12px rgba(57, 133, 247, 0.16),
+        0 3px 0 #10182B;
+
+    transform: translateY(-2px);
+}
+
+/* EFEITO AO PRESSIONAR */
+
+.tecla:active {
+    transform: translateY(2px);
+
+    box-shadow:
+        0 0 8px rgba(57, 133, 247, 0.15);
+}
+
+.tecla:focus {
+    outline: none;
+}
+
+/* TECLA CORRETA */
+
+/* TECLA CORRETA */
 
 .tecla.correct {
-    background-color: #538D4E;
+    background: linear-gradient(145deg, #538D4E, #367A43);
+    border-color: #75B96D;
+    color: #FFFFFF;
+
+    box-shadow:
+        0 0 12px rgba(83, 141, 78, 0.40),
+        0 3px 0 #285C32;
 }
+
+/* TECLA PRESENTE */
+
+/* TECLA PRESENTE */
 
 .tecla.present {
-    background-color: #B59F3B;
+    background: linear-gradient(145deg, #B59F3B, #927D27);
+    border-color: #D6BD55;
+    color: #FFFFFF;
+
+    box-shadow:
+        0 0 12px rgba(181, 159, 59, 0.35),
+        0 3px 0 #6E5D1D;
 }
+
+/* TECLA AUSENTE */
 
 .tecla.absent {
-    background-color: #3A3A3C;
+    background: #202638;
+    border-color: rgba(255, 255, 255, 0.035);
+    color: #69738A;
+
+    box-shadow:
+        0 2px 0 #111827;
 }
 
+/* TECLAS ESPECIAIS */
+
+.tecla-especial {
+    min-width: 66px;
+    width: auto;
+    padding: 0 12px;
+
+    background: linear-gradient(
+        145deg,
+        #303C5C,
+        #222E49
+    );
+
+    color: #BFCDF0;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+}
+
+/* RESPONSIVIDADE */
+
 @media (max-width: 480px) {
+    .teclado {
+        gap: 7px;
+        padding: 9px 5px;
+        border-radius: 13px;
+    }
+
     .linha-teclado {
         gap: 4px;
     }
 
     .tecla {
-        width: min(8.5vw, 35px);
-        height: 45px;
+        width: min(8.5vw, 36px);
+        height: 43px;
+        border-radius: 7px;
         font-size: 12px;
     }
+
+    .tecla-especial {
+        min-width: 48px;
+        width: auto;
+        padding: 0 7px;
+        font-size: 9px;
+    }
 }
+
 
 
 /* =========================================
@@ -641,31 +759,10 @@ body {
     font-size: clamp(19px, 4vh, 28px);
 }
 
-/* Teclado virtual */
-.teclado {
-    flex-shrink: 0;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    gap: clamp(5px, 1vh, 8px);
-
-    margin: 4px auto;
-    padding: 0 5px;
-}
-
 .linha-teclado {
     display: flex;
     justify-content: center;
     gap: clamp(3px, 0.8vw, 6px);
-}
-
-.tecla {
-    width: clamp(25px, min(4.5vw, 5.5vh), 42px);
-    height: clamp(34px, 5.8vh, 52px);
-
-    font-size: clamp(11px, 2vh, 15px);
 }
 
 /* =========================================
@@ -1362,40 +1459,6 @@ body {
     cursor: default;
 }
 
-/* ==========================================
-   TECLADO VIRTUAL
-========================================== */
-
-.tecla {
-    border: none;
-    font: inherit;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    transition: transform 0.12s ease, filter 0.12s ease;
-}
-
-.tecla:hover {
-    filter: brightness(1.2);
-}
-
-.tecla:active {
-    transform: scale(0.92);
-}
-
-.tecla-especial {
-    padding: 0 12px;
-    min-width: 48px;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-/* Evita que o clique no teclado deixe um foco visual indesejado */
-.tecla:focus {
-    outline: none;
-}
-
-
 /* POP-UP DE AVISO */
 .aviso-popup {
     position: fixed;
@@ -1786,6 +1849,17 @@ body {
     font-size: 13px;
 }
 
+/* ==========================================
+   CORREÇÃO DO MODO TRIO
+========================================== */
+
+#game-board[data-quantidade="3"] .tabuleiro-individual:nth-child(3) {
+    grid-column: auto;
+    grid-row: auto;
+    width: max-content;
+    justify-self: auto;
+}
+
 @media (max-width: 480px) {
     .modal-info {
         padding: 21px;
@@ -1799,4 +1873,51 @@ body {
         font-size: 9px;
     }
     
+}
+
+/* ==========================================
+   AJUSTES FINAIS DO TECLADO
+========================================== */
+
+.teclado {
+    padding: 12px 14px;
+    margin: 10px auto 16px;
+    gap: 9px;
+}
+
+.linha-teclado {
+    gap: 7px;
+}
+
+.tecla {
+    width: clamp(27px, min(4.5vw, 5.5vh), 44px);
+    height: clamp(36px, 5.8vh, 50px);
+}
+
+/* CELULARES */
+@media (max-width: 480px) {
+
+    .teclado {
+        padding: 9px 5px;
+        gap: 7px;
+    }
+
+    .linha-teclado {
+        gap: 4px;
+    }
+
+    .tecla {
+        width: min(8.5vw, 36px);
+        height: 43px;
+    }
+
+}
+
+/* TELAS COM POUCA ALTURA */
+@media (max-height: 600px) {
+
+    .tecla {
+        height: clamp(27px, 5vh, 36px);
+    }
+
 }
