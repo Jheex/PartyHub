@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termo Infinito</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <nav class="navbar">
+
+            <!-- ESQUERDA -->
+            <div class="header-left">
+
+                <!-- VOLTAR PARA OS JOGOS -->
+                <a href="../../index.html"
+                   class="icon-button"
+                   title="Voltar aos jogos"
+                   aria-label="Voltar para a página inicial">
+
+                    <svg viewBox="0 0 24 24" width="28" height="28"
+                         fill="none" stroke="currentColor"
+                         stroke-width="1.8" stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <!-- Corpo do controle -->
+                        <path d="M6.5 8h11a4 4 0 0 1 3.8 5.2l-1 3.5a2.5 2.5 0 0 1-4.1 1.2L14 16H10l-2.2 1.9a2.5 2.5 0 0 1-4.1-1.2l-1-3.5A4 4 0 0 1 6.5 8Z"/>
+
+                        <!-- Direcional -->
+                        <path d="M7 10.5v4"/>
+                        <path d="M5 12.5h4"/>
+
+                        <!-- Botões -->
+                        <circle cx="16" cy="11.5" r="0.8" fill="currentColor"/>
+                        <circle cx="18" cy="14" r="0.8" fill="currentColor"/>
+
+                    </svg>
+
+                </a>
+
+                <!-- ÍCONE A -->
+                <button class="icon-button" title="Controles">
+
+                    <svg viewBox="0 0 24 24" width="32" height="32"
+                         fill="none" stroke="currentColor"
+                         stroke-width="1.8" stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <rect x="2" y="2" width="20" height="20" rx="5"/>
+                        <path d="M7 17 L12 6 L17 17"/>
+                        <path d="M9 13.5 H15"/>
+
+                    </svg>
+
+                </button>
+
+                <a href="#" class="logo">TERMO</a>
+
+            </div>
+
+            <!-- CENTRO -->
+            <div class="nav-links">
+                <button class="mode-button active" data-mode="solo">SOLO</button>
+                <button class="mode-button" data-mode="dueto">DUETO</button>
+                <button class="mode-button" data-mode="trio">TRIO</button>
+                <button class="mode-button" data-mode="quarteto">QUARTETO</button>
+            </div>
+
+            <!-- DIREITA -->
+            <div class="header-actions">
+
+                <!-- ESTATÍSTICAS -->
+                <button class="icon-button" title="Estatísticas">
+
+                    <svg viewBox="0 0 24 24" width="22" height="22"
+                         fill="none" stroke="currentColor"
+                         stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <line x1="4" y1="19" x2="20" y2="19"/>
+                        <rect x="5" y="10" width="3" height="9" rx="1"/>
+                        <rect x="11" y="5" width="3" height="14" rx="1"/>
+                        <rect x="17" y="2" width="3" height="17" rx="1"/>
+
+                    </svg>
+
+                </button>
+
+                <!-- COMO JOGAR -->
+                <button class="icon-button"
+                        id="btn-como-jogar"
+                        title="Como jogar">
+
+                    <svg viewBox="0 0 24 24" width="22" height="22"
+                         fill="none" stroke="currentColor"
+                         stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.6 9a2.5 2.5 0 1 1 4.3 1.7c-1.1 1.1-1.9 1.4-1.9 3"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+
+                    </svg>
+
+                </button>
+
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- ÁREA DO JOGO -->
+    <main id="tabuleiro">
+        <div id="mensagem" class="mensagem"></div>
+        <div class="container" id="game-board"></div>
+        <div id="teclado" class="teclado"></div>
+    </main>
+
+    <!-- MODAL DE RESULTADO -->
+    <div id="modal-resultado" class="modal-overlay">
+
+        <div class="modal-conteudo">
+
+            <button id="fechar-modal" class="modal-fechar" title="Fechar">
+                &times;
+            </button>
+
+            <div id="modal-icone" class="modal-icone"></div>
+
+            <h2 id="modal-titulo">Fim de jogo!</h2>
+
+            <p id="modal-descricao"></p>
+
+            <div id="respostas-jogo" class="respostas-jogo"></div>
+
+            <button id="btn-jogar-novamente" class="btn-jogar-novamente">
+                JOGAR NOVAMENTE
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="js/palavras.js"></script>
+    <script src="js/dicionario.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>

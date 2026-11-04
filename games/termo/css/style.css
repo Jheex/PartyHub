@@ -1,0 +1,1281 @@
+
+/* =========================================
+   1. VARIÁVEIS E CONFIGURAÇÕES GERAIS
+========================================= */
+
+:root {
+    --bg-primary: #0B0E20;
+    --bg-header: rgba(15, 18, 42, 0.55);
+    --bg-secondary: #141A2D;
+
+    --border-color: rgba(160, 160, 255, 0.15);
+
+    --text-primary: #FFFFFF;
+    --text-secondary: #A5A9C5;
+
+    --accent: #7772F1;
+    --accent-blue: #3985F7;
+    --accent-purple: #635BDB;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================================
+   2. HEADER
+========================================= */
+
+.site-header {
+    background: var(--bg-header);
+
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.20);
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: center;
+
+    max-width: 1400px;
+    margin: auto;
+    padding: 16px 30px;
+}
+
+/* =========================================
+   LADO ESQUERDO
+========================================= */
+
+.header-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.logo {
+    color: var(--text-primary);
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.icon-button {
+    width: 42px;
+    height: 42px;
+}
+
+.icon-button svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* =========================================
+   CENTRO - MODOS
+========================================= */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* =========================================
+   LADO DIREITO
+========================================= */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.icon-button svg {
+    display: block;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+/* =========================================
+   BOTÕES DE ÍCONE
+========================================= */
+
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    color: var(--text-secondary);
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.icon-button:hover {
+    background: rgba(99, 91, 219, 0.15);
+    border-color: rgba(130, 125, 255, 0.25);
+    color: #A5A4FF;
+}
+
+/* =========================================
+   BOTÕES DOS MODOS
+========================================= */
+
+.mode-button {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+
+    padding: 10px 16px;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.mode-button:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+}
+
+.mode-button.active {
+    background: linear-gradient(
+        135deg,
+        rgba(99, 91, 219, 0.25),
+        rgba(57, 133, 247, 0.15)
+    );
+
+    color: #A5A4FF;
+    border-color: rgba(130, 125, 255, 0.25);
+}
+
+
+/* =========================================
+   3. LINKS E LOGO
+========================================= */
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.menu-icon:hover {
+    color: var(--accent-blue);
+    filter: drop-shadow(0 0 8px rgba(57, 133, 247, 0.5));
+}
+
+.logo {
+    color: var(--text-primary);
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   4. NAVEGAÇÃO DOS MODOS
+========================================= */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mode-button {
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+
+    padding: 10px 16px;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.mode-button:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+}
+
+.mode-button.active {
+    background: linear-gradient(
+        135deg,
+        rgba(99, 91, 219, 0.25),
+        rgba(57, 133, 247, 0.15)
+    );
+
+    color: #A5A4FF;
+    border: 1px solid rgba(130, 125, 255, 0.25);
+}
+
+
+/* =========================================
+   5. AÇÕES DO HEADER
+========================================= */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    color: var(--text-secondary);
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+
+.icon-button:hover {
+    background: rgba(99, 91, 219, 0.15);
+    border-color: rgba(130, 125, 255, 0.25);
+    color: #A5A4FF;
+}
+
+
+/* =========================================
+   6. TÍTULO DO JOGO
+========================================= */
+
+.title {
+    padding: 35px 0 25px;
+
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+
+/* =========================================
+   7. TABULEIRO
+========================================= */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 15px 30px;
+}
+
+.cards-1,
+.cards-2,
+.cards-3,
+.cards-4,
+.cards-5 {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+
+/* =========================================
+   8. CÉLULAS DAS LETRAS
+========================================= */
+
+input {
+    width: 65px;
+    aspect-ratio: 1 / 1;
+
+    background: var(--bg-secondary);
+    border: 2px solid #30374D;
+    border-radius: 10px;
+
+    color: var(--text-primary);
+
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    outline: none;
+
+    transition:
+        border-color 0.3s ease,
+        background-color 0.5s ease,
+        transform 0.5s ease;
+}
+
+input:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 10px rgba(57, 133, 247, 0.20);
+}
+
+input:hover {
+    border-color: #68738B;
+}
+
+/* ANIMAÇÃO DE REVELAÇÃO HORIZONTAL */
+
+@keyframes revelarLetra {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    50% {
+        transform: rotateY(90deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+input.revelar {
+    animation: revelarLetra 0.6s ease;
+}
+
+/* =========================================
+   9. RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 14px 16px;
+        gap: 8px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .header-left {
+        gap: 6px;
+    }
+
+    .nav-links {
+        gap: 2px;
+    }
+
+    .mode-button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .header-actions {
+        gap: 4px;
+    }
+
+    .icon-button {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .navbar {
+        grid-template-columns: 1fr auto;
+        row-gap: 12px;
+    }
+
+    .header-left {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .header-actions {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .nav-links {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+    }
+
+    .mode-button {
+        flex: 1;
+    }
+}
+
+
+/* =========================================
+   10. CORES DAS LETRAS
+========================================= */
+
+input.correct {
+    background-color: #538D4E;
+    border-color: #538D4E;
+    color: #FFFFFF;
+}
+
+input.present {
+    background-color: #B59F3B;
+    border-color: #B59F3B;
+    color: #FFFFFF;
+}
+
+input.absent {
+    background-color: #3A3A3C;
+    border-color: #3A3A3C;
+    color: #FFFFFF;
+}
+
+/* MENSAGENS DO JOGO */
+
+.mensagem {
+    min-height: 25px;
+    margin: 15px 0;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    transition: 0.3s;
+}
+
+.mensagem.sucesso {
+    color: #538D4E;
+}
+
+.mensagem.erro {
+    color: #E05B5B;
+}
+
+.mensagem.aviso {
+    color: #B59F3B;
+}
+
+/* =========================================
+   11. TECLADO VIRTUAL
+========================================= */
+
+.teclado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 20px auto 30px;
+    padding: 0 10px;
+}
+
+.linha-teclado {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.tecla {
+    width: 42px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #30374D;
+    border: none;
+    border-radius: 6px;
+
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+
+    transition: background-color 0.4s ease,
+                transform 0.2s ease;
+}
+
+.tecla.correct {
+    background-color: #538D4E;
+}
+
+.tecla.present {
+    background-color: #B59F3B;
+}
+
+.tecla.absent {
+    background-color: #3A3A3C;
+}
+
+@media (max-width: 480px) {
+    .linha-teclado {
+        gap: 4px;
+    }
+
+    .tecla {
+        width: min(8.5vw, 35px);
+        height: 45px;
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================
+   12. AJUSTE DO JOGO À ALTURA DA TELA
+========================================= */
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100vh;
+    height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+/* Header não deve diminuir */
+.site-header {
+    flex-shrink: 0;
+}
+
+/* Área disponível para o jogo */
+#tabuleiro {
+    flex: 1;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    overflow: hidden;
+
+    padding: 4px 0;
+}
+
+/* Mensagens */
+.mensagem {
+    flex-shrink: 0;
+    margin: 2px 0;
+    min-height: 22px;
+}
+
+/* Tabuleiro */
+.container {
+    flex-shrink: 1;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: clamp(4px, 1vh, 8px);
+
+    padding: 0;
+}
+
+/* Linhas */
+.cards-1,
+.cards-2,
+.cards-3,
+.cards-4,
+.cards-5 {
+    display: flex;
+    justify-content: center;
+    gap: clamp(4px, 1vw, 8px);
+}
+
+/* Células */
+#game-board input {
+    width: clamp(38px, min(13vw, 7.5vh), 65px);
+    aspect-ratio: 1 / 1;
+
+    padding: 0;
+    font-size: clamp(19px, 4vh, 28px);
+}
+
+/* Teclado virtual */
+.teclado {
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: clamp(5px, 1vh, 8px);
+
+    margin: 4px auto;
+    padding: 0 5px;
+}
+
+.linha-teclado {
+    display: flex;
+    justify-content: center;
+    gap: clamp(3px, 0.8vw, 6px);
+}
+
+.tecla {
+    width: clamp(25px, min(4.5vw, 5.5vh), 42px);
+    height: clamp(34px, 5.8vh, 52px);
+
+    font-size: clamp(11px, 2vh, 15px);
+}
+
+/* =========================================
+   13. TELAS PEQUENAS
+========================================= */
+
+@media (max-width: 480px) {
+
+    .navbar {
+        padding: 10px 12px;
+    }
+
+    .header-left {
+        gap: 4px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .header-left .icon-button {
+        width: 34px;
+        height: 38px;
+    }
+
+    .header-left .icon-button svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    .header-actions .icon-button {
+        width: 32px;
+        height: 38px;
+    }
+
+    .nav-links {
+        gap: 3px;
+    }
+
+    .mode-button {
+        padding: 7px 8px;
+        font-size: 11px;
+    }
+
+    #game-board input {
+        width: clamp(38px, min(13vw, 7vh), 58px);
+        border-radius: 8px;
+    }
+
+    .tecla {
+        width: clamp(25px, min(8.5vw, 5.5vh), 35px);
+        height: clamp(34px, 5.5vh, 45px);
+        font-size: 12px;
+    }
+
+}
+
+/* Celular na horizontal ou telas com pouca altura */
+@media (max-height: 600px) {
+
+    #tabuleiro {
+        justify-content: space-around;
+    }
+
+    #game-board input {
+        width: clamp(32px, min(10vw, 6vh), 48px);
+    }
+
+    .teclado {
+        gap: 3px;
+        margin: 2px auto;
+    }
+
+    .linha-teclado {
+        gap: 3px;
+    }
+
+    .tecla {
+        height: clamp(27px, 5vh, 36px);
+    }
+
+    .mensagem {
+        min-height: 16px;
+        font-size: 12px;
+        margin: 0;
+    }
+
+}
+
+
+/* =========================================
+   14. MÚLTIPLOS TABULEIROS
+========================================= */
+
+
+/* =========================================
+   14. MÚLTIPLOS TABULEIROS
+========================================= */
+
+#game-board {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+
+    gap: clamp(12px, 2vh, 22px);
+    padding: 8px 12px;
+}
+
+/* Cada tabuleiro */
+.tabuleiro-individual {
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: clamp(3px, 0.6vh, 6px);
+}
+
+/* Título */
+.titulo-tabuleiro {
+    color: var(--text-secondary);
+    font-size: clamp(10px, 1.6vh, 13px);
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-align: center;
+}
+
+/* SOLO */
+#game-board[data-quantidade="1"] {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+#game-board[data-quantidade="1"] .tabuleiro-individual {
+    max-width: 400px;
+}
+
+/* DUETO */
+#game-board[data-quantidade="2"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* TRIO */
+#game-board[data-quantidade="3"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#game-board[data-quantidade="3"] .tabuleiro-individual:nth-child(3) {
+    grid-column: 1 / -1;
+    width: 50%;
+}
+
+/* QUARTETO */
+#game-board[data-quantidade="4"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Células dos modos múltiplos */
+#game-board[data-quantidade="2"] input,
+#game-board[data-quantidade="3"] input,
+#game-board[data-quantidade="4"] input {
+    width: clamp(22px, min(5vw, 5.5vh), 46px);
+    font-size: clamp(13px, 2.5vh, 20px);
+    border-radius: 6px;
+}
+
+/* Espaçamento das linhas */
+#game-board .cards-1,
+#game-board .cards-2,
+#game-board .cards-3,
+#game-board .cards-4,
+#game-board .cards-5 {
+    gap: clamp(2px, 0.5vw, 5px);
+}
+
+/* Tabuleiros concluídos */
+.tabuleiro-individual {
+    transition: opacity 0.3s ease;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    #game-board[data-quantidade="2"],
+    #game-board[data-quantidade="3"],
+    #game-board[data-quantidade="4"] {
+        gap: 10px 5px;
+        padding: 4px;
+    }
+
+    #game-board[data-quantidade="2"] input,
+    #game-board[data-quantidade="3"] input,
+    #game-board[data-quantidade="4"] input {
+        width: clamp(20px, min(5.5vw, 5vh), 34px);
+        font-size: clamp(12px, 2.2vh, 16px);
+    }
+
+    #game-board[data-quantidade="3"] .tabuleiro-individual:nth-child(3) {
+        width: 50%;
+    }
+
+    .titulo-tabuleiro {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+}
+
+@media (max-width: 380px) {
+    #game-board[data-quantidade="2"],
+    #game-board[data-quantidade="3"],
+    #game-board[data-quantidade="4"] {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #game-board[data-quantidade="3"] .tabuleiro-individual:nth-child(3) {
+        grid-column: auto;
+        width: 100%;
+    }
+}
+
+@media (max-height: 600px) {
+    #game-board {
+        gap: 5px;
+    }
+
+    .titulo-tabuleiro {
+        font-size: 9px;
+    }
+
+    #game-board[data-quantidade="2"] input,
+    #game-board[data-quantidade="3"] input,
+    #game-board[data-quantidade="4"] input {
+        width: clamp(19px, min(4vw, 4.5vh), 32px);
+    }
+}
+
+
+/* =========================================
+   15. RESPONSIVIDADE DOS MODOS
+========================================= */
+
+@media (max-width: 600px) {
+
+    #game-board {
+        gap: 10px 5px;
+        padding: 4px;
+    }
+
+    #game-board[data-quantidade="2"] input,
+    #game-board[data-quantidade="3"] input,
+    #game-board[data-quantidade="4"] input {
+        width: clamp(20px, min(5.5vw, 5vh), 34px);
+        font-size: clamp(12px, 2.2vh, 16px);
+    }
+
+    #game-board[data-quantidade="3"]
+    .tabuleiro-individual:nth-child(3) {
+        width: calc(50% - 3px);
+    }
+
+    .titulo-tabuleiro {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+}
+
+@media (max-height: 600px) {
+
+    #game-board {
+        gap: 5px;
+    }
+
+    .titulo-tabuleiro {
+        font-size: 9px;
+    }
+
+    #game-board[data-quantidade="2"] input,
+    #game-board[data-quantidade="3"] input,
+    #game-board[data-quantidade="4"] input {
+        width: clamp(19px, min(4vw, 4.5vh), 32px);
+    }
+
+}
+
+
+/* =========================================
+   16. SELEÇÃO DAS CÉLULAS
+========================================= */
+
+/* Remove o cursor vertical piscando */
+#game-board input {
+    caret-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Destaque elegante da célula selecionada */
+#game-board input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow:
+        0 0 0 2px rgba(57, 133, 247, 0.18),
+        0 0 14px rgba(57, 133, 247, 0.25);
+
+    transform: scale(1.04);
+}
+
+/* Não destacar células bloqueadas */
+#game-board input:disabled {
+    cursor: default;
+}
+
+/* =========================================
+   17. MODAL DE RESULTADO
+========================================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(3, 5, 18, 0.78);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.visivel {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.modal-conteudo {
+    position: relative;
+
+    width: min(100%, 430px);
+    max-height: 85vh;
+    overflow-y: auto;
+
+    padding: 32px 25px;
+
+    background: linear-gradient(
+        145deg,
+        #191F39,
+        #10152B
+    );
+
+    border: 1px solid rgba(160, 160, 255, 0.2);
+    border-radius: 20px;
+
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+
+    text-align: center;
+
+    transform: translateY(18px) scale(0.97);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.visivel .modal-conteudo {
+    transform: translateY(0) scale(1);
+}
+
+.modal-fechar {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color: var(--text-secondary);
+
+    font-size: 27px;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.modal-fechar:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+}
+
+.modal-icone {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.modal-conteudo h2 {
+    margin: 0 0 8px;
+    font-size: 25px;
+}
+
+.modal-conteudo p {
+    margin: 0 0 22px;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.respostas-jogo {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+    justify-items: stretch;
+}
+
+/* Quando houver apenas 1 resposta */
+.respostas-jogo.quantidade-1 .resposta-item {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 50%;
+}
+
+/* Quando houver 2 respostas */
+.respostas-jogo.quantidade-2 .resposta-item {
+    width: 100%;
+}
+
+/* Quando houver 3 respostas: terceira centralizada embaixo */
+.respostas-jogo.quantidade-3 .resposta-item:nth-child(3) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 50%;
+}
+
+/* Quando houver 4 respostas: duas linhas com dois cards */
+.respostas-jogo.quantidade-4 .resposta-item {
+    width: 100%;
+}
+
+.resposta-item {
+    padding: 12px 8px;
+
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+
+.resposta-item.acertou {
+    border-color: rgba(83, 141, 78, 0.55);
+    background: rgba(83, 141, 78, 0.12);
+}
+
+.resposta-item.nao-acertou {
+    border-color: rgba(224, 91, 91, 0.35);
+}
+
+.resposta-numero {
+    display: block;
+    margin-bottom: 6px;
+
+    color: var(--text-secondary);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.resposta-palavra {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.resposta-status {
+    display: block;
+    margin-top: 5px;
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.resposta-item.acertou .resposta-status {
+    color: #85C77D;
+}
+
+.btn-jogar-novamente {
+    width: 100%;
+    padding: 14px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: linear-gradient(135deg, #635BDB, #3985F7);
+    color: white;
+
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.btn-jogar-novamente:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.12);
+}
+
+/* =========================================
+   18. AUMENTO DOS CARDS
+========================================= */
+
+/* Solo */
+#game-board[data-quantidade="1"] input {
+    width: clamp(48px, min(7vw, 7vh), 68px);
+    font-size: clamp(23px, 4vh, 30px);
+}
+
+/* Dueto, Trio e Quarteto */
+#game-board[data-quantidade="2"] input,
+#game-board[data-quantidade="3"] input,
+#game-board[data-quantidade="4"] input {
+    width: clamp(30px, min(6vw, 6vh), 58px);
+    font-size: clamp(17px, 3vh, 25px);
+    border-radius: 8px;
+}
+
+/* Melhor aproveitamento do espaço */
+#game-board[data-quantidade="2"],
+#game-board[data-quantidade="3"],
+#game-board[data-quantidade="4"] {
+    width: min(100%, 1200px);
+    column-gap: clamp(12px, 2vw, 28px);
+    row-gap: clamp(12px, 2vh, 22px);
+}
+
+@media (max-width: 600px) {
+
+    #game-board[data-quantidade="2"] input,
+    #game-board[data-quantidade="3"] input,
+    #game-board[data-quantidade="4"] input {
+        width: clamp(27px, min(7vw, 5.5vh), 42px);
+        font-size: clamp(14px, 2.5vh, 19px);
+    }
+
+    .modal-conteudo {
+        padding: 28px 18px;
+    }
+
+}
+
+@media (max-height: 600px) {
+
+    #game-board[data-quantidade="2"] input,
+    #game-board[data-quantidade="3"] input,
+    #game-board[data-quantidade="4"] input {
+        width: clamp(25px, min(5vw, 5vh), 38px);
+    }
+
+}
+
+
+/* ==========================================
+   TABULEIROS LADO A LADO
+========================================== */
+
+#game-board.container {
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    justify-content: center;
+    align-items: start;
+    gap: 24px;
+
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/* Cada tabuleiro individual */
+.tabuleiro-individual {
+    flex-shrink: 0;
+    width: max-content;
+}
+
+/* Evita que os tabuleiros sejam comprimidos */
+.tabuleiro-individual .cards-1,
+.tabuleiro-individual .cards-2,
+.tabuleiro-individual .cards-3,
+.tabuleiro-individual .cards-4,
+.tabuleiro-individual .cards-5,
+.tabuleiro-individual .cards-6,
+.tabuleiro-individual .cards-7,
+.tabuleiro-individual .cards-8,
+.tabuleiro-individual .cards-9 {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
