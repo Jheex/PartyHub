@@ -12,10 +12,10 @@ const modalTitulo = document.querySelector("#modal-titulo");
 const modalDescricao = document.querySelector("#modal-descricao");
 const modalIcone = document.querySelector("#modal-icone");
 const respostasJogo = document.querySelector("#respostas-jogo");
-
-let TOTAL_LINHAS = 6;
+const avisoPopup = document.querySelector("#aviso-popup");
+const avisoTexto = document.querySelector("#aviso-texto");
+const CHAVE_ESTATISTICAS = "termo_estatisticas";
 const TOTAL_COLUNAS = 5;
-
 const linhasPorModo = {
     solo: 6,
     dueto: 7,
@@ -23,13 +23,16 @@ const linhasPorModo = {
     quarteto: 9
 };
 
+let estatisticasRegistradas = false;
+let modoEstatisticaSelecionado = "solo";
+let temporizadorAviso;
+let TOTAL_LINHAS = 6;
 let modoAtual = "solo";
 let linhaAtual = 0;
+let colunaAtual = 0;
 let jogoFinalizado = false;
 let animacaoEmAndamento = false;
-
 let tabuleiros = [];
-
 
 // ==========================================
 // 2. NORMALIZANDO PALAVRAS
@@ -123,6 +126,11 @@ function criarTabuleiros() {
 
     areaTabuleiros.dataset.quantidade = quantidade;
 
+    areaTabuleiros.style.setProperty(
+        "--quantidade-tabuleiros",
+        quantidade
+    );
+
     const palavrasSorteadas = sortearPalavras(quantidade);
 
     tabuleiros = [];
@@ -153,6 +161,12 @@ function criarTabuleiros() {
             const novaLinha = document.createElement("div");
 
             novaLinha.className = `cards-${linha + 1}`;
+
+            if (linha === 0) {
+                novaLinha.classList.add("linha-ativa");
+            } else {
+                novaLinha.classList.add("linha-bloqueada");
+            }
 
             // Criando as cinco células
             for (let coluna = 0; coluna < TOTAL_COLUNAS; coluna++) {
@@ -199,7 +213,8 @@ function criarTabuleiros() {
             palavraNormalizada: normalizarPalavra(palavra),
             elemento: novoTabuleiro,
             linhas: linhas,
-            resolvido: false
+            resolvido: false,
+            linhaResolvida: null
 
         });
 
@@ -209,6 +224,47 @@ function criarTabuleiros() {
         "Palavras secretas:",
         tabuleiros.map(t => t.palavra)
     );
+
+}
+
+// ==========================================
+// ATUALIZANDO O ESTADO VISUAL DAS LINHAS
+// ==========================================
+
+function atualizarEstadoLinhas() {
+
+    tabuleiros.forEach(tabuleiro => {
+
+        tabuleiro.linhas.forEach((linha, indice) => {
+
+            linha.classList.remove(
+                "linha-ativa",
+                "linha-bloqueada",
+                "linha-finalizada"
+            );
+
+            if (tabuleiro.resolvido) {
+
+                if (indice <= tabuleiro.linhaResolvida) {
+                    linha.classList.add("linha-finalizada");
+                } else {
+                    linha.classList.add("linha-bloqueada");
+                }
+
+                return;
+            }
+
+            if (indice < linhaAtual) {
+                linha.classList.add("linha-finalizada");
+            } else if (indice === linhaAtual) {
+                linha.classList.add("linha-ativa");
+            } else {
+                linha.classList.add("linha-bloqueada");
+            }
+
+        });
+
+    });
 
 }
 
@@ -242,15 +298,30 @@ function adicionarEventosCelula(
         espelharLetra(linha, coluna, celula.value);
 
         // Avança para a próxima célula
-        if (
-            celula.value !== "" &&
-            coluna < TOTAL_COLUNAS - 1
-        ) {
+        if (celula.value !== "") {
 
-            novaLinha.children[coluna + 1].focus();
+            if (coluna < TOTAL_COLUNAS - 1) {
+
+                colunaAtual = coluna + 1;
+
+                novaLinha.children[coluna + 1].focus();
+
+            } else {
+
+                colunaAtual = coluna;
+
+            }
+
+        } else {
+
+            colunaAtual = coluna;
 
         }
 
+    });
+
+    celula.addEventListener("focus", function () {
+        colunaAtual = coluna;
     });
 
 
@@ -337,6 +408,7 @@ function espelharLetra(linha, coluna, valor) {
 // 8. CRIANDO O TECLADO VIRTUAL
 // ==========================================
 
+
 function criarTeclado() {
 
     teclado.innerHTML = "";
@@ -347,23 +419,54 @@ function criarTeclado() {
         "ZXCVBNM"
     ];
 
-    linhasTeclado.forEach(letras => {
+    linhasTeclado.forEach((letras, indice) => {
 
         const linha = document.createElement("div");
-
         linha.className = "linha-teclado";
+
+        // Botão de apagar na terceira linha
+        if (indice === 2) {
+            const apagar = document.createElement("button");
+
+            apagar.type = "button";
+            apagar.className = "tecla tecla-especial";
+            apagar.textContent = "⌫";
+            apagar.title = "Apagar";
+
+            apagar.addEventListener("click", apagarLetra);
+
+            linha.appendChild(apagar);
+        }
 
         letras.split("").forEach(letra => {
 
-            const tecla = document.createElement("div");
+            const tecla = document.createElement("button");
 
+            tecla.type = "button";
             tecla.className = "tecla";
             tecla.textContent = letra;
             tecla.dataset.letra = letra;
 
+            tecla.addEventListener("click", function () {
+                inserirLetra(letra);
+            });
+
             linha.appendChild(tecla);
 
         });
+
+        // Botão ENTER na terceira linha
+        if (indice === 2) {
+            const enter = document.createElement("button");
+
+            enter.type = "button";
+            enter.className = "tecla tecla-especial";
+            enter.textContent = "ENTER";
+
+            enter.addEventListener("click", validarTentativa);
+
+            linha.appendChild(enter);
+        }
 
         teclado.appendChild(linha);
 
@@ -371,6 +474,70 @@ function criarTeclado() {
 
 }
 
+// ==========================================
+// DIGITAÇÃO PELO TECLADO VIRTUAL
+// ==========================================
+
+function inserirLetra(letra) {
+
+    if (jogoFinalizado || animacaoEmAndamento) return;
+
+    const primeiraLinha = tabuleiros[0].linhas[linhaAtual];
+
+    // Procura a próxima célula disponível
+    let coluna = colunaAtual;
+
+    while (
+        coluna < TOTAL_COLUNAS &&
+        primeiraLinha.children[coluna].value !== ""
+    ) {
+        coluna++;
+    }
+
+    if (coluna >= TOTAL_COLUNAS) return;
+
+    const celula = primeiraLinha.children[coluna];
+
+    celula.value = letra;
+
+    colunaAtual = coluna;
+
+    // Dispara o mesmo evento usado pelo teclado físico
+    celula.dispatchEvent(new Event("input", {
+        bubbles: true
+    }));
+
+}
+
+function apagarLetra() {
+
+    if (jogoFinalizado || animacaoEmAndamento) return;
+
+    const primeiraLinha = tabuleiros[0].linhas[linhaAtual];
+
+    let coluna = colunaAtual;
+
+    // Se a célula atual estiver vazia, volta uma posição
+    if (
+        coluna >= TOTAL_COLUNAS ||
+        primeiraLinha.children[coluna].value === ""
+    ) {
+        coluna--;
+    }
+
+    if (coluna < 0) return;
+
+    const celula = primeiraLinha.children[coluna];
+
+    celula.value = "";
+
+    colunaAtual = coluna;
+
+    espelharLetra(linhaAtual, coluna, "");
+
+    celula.focus();
+
+}
 
 // ==========================================
 // 9. VALIDANDO A TENTATIVA
@@ -401,10 +568,7 @@ function validarTentativa() {
     // Verifica se existe no dicionário
     if (!dicionarioNormalizado.includes(tentativaNormalizada)) {
 
-        mostrarMensagem(
-            "Essa palavra não está no nosso banco!",
-            "erro"
-        );
+        mostrarAviso("Esta palavra não é aceita!");
 
         return;
 
@@ -462,6 +626,7 @@ function validarTentativa() {
         ) {
 
             tabuleiro.resolvido = true;
+            tabuleiro.linhaResolvida = linhaAtual;
 
         }
 
@@ -538,6 +703,11 @@ function finalizarTentativa() {
     // Todas as palavras foram descobertas
     if (quantidadeResolvida === quantidadeTotal) {
 
+        if (!estatisticasRegistradas) {
+            registrarResultado(true, linhaAtual + 1);
+            estatisticasRegistradas = true;
+        }
+
         jogoFinalizado = true;
         animacaoEmAndamento = false;
 
@@ -551,6 +721,11 @@ function finalizarTentativa() {
 
     // Acabaram as tentativas
     if (linhaAtual === TOTAL_LINHAS - 1) {
+
+        if (!estatisticasRegistradas) {
+            registrarResultado(false, linhaAtual + 1);
+            estatisticasRegistradas = true;
+        }
 
         jogoFinalizado = true;
         animacaoEmAndamento = false;
@@ -578,6 +753,8 @@ function finalizarTentativa() {
     });
 
     linhaAtual++;
+    colunaAtual = 0;
+    atualizarEstadoLinhas();
 
     // Libera a próxima linha do primeiro tabuleiro
     const primeiraProximaLinha =
@@ -775,6 +952,8 @@ function alterarModo(novoModo) {
     modoAtual = novoModo;
     TOTAL_LINHAS = linhasPorModo[novoModo];
     linhaAtual = 0;
+    estatisticasRegistradas = false;
+    colunaAtual = 0;
     jogoFinalizado = false;
     animacaoEmAndamento = false;
 
@@ -812,9 +991,294 @@ botoesModo.forEach(botao => {
 
 });
 
+function mostrarAviso(texto) {
+    clearTimeout(temporizadorAviso);
+
+    avisoTexto.textContent = texto;
+    avisoPopup.classList.add("visivel");
+
+    temporizadorAviso = setTimeout(() => {
+        avisoPopup.classList.remove("visivel");
+    }, 2200);
+}
+
+
 
 // ==========================================
 // 17. INICIANDO O JOGO
 // ==========================================
 
 alterarModo("solo");
+
+
+// ==========================================
+// ESTATÍSTICAS
+// ==========================================
+
+function criarEstatisticasVazias() {
+    return {
+        solo: criarRegistroVazio(),
+        dueto: criarRegistroVazio(),
+        trio: criarRegistroVazio(),
+        quarteto: criarRegistroVazio()
+    };
+}
+
+function criarRegistroVazio() {
+    return {
+        partidas: 0,
+        vitorias: 0,
+        derrotas: 0,
+        sequenciaAtual: 0,
+        melhorSequencia: 0,
+        distribuicao: Array(9).fill(0)
+    };
+}
+
+function carregarEstatisticas() {
+    try {
+        const dadosSalvos = localStorage.getItem(CHAVE_ESTATISTICAS);
+
+        if (!dadosSalvos) {
+            return criarEstatisticasVazias();
+        }
+
+        const dados = JSON.parse(dadosSalvos);
+        const padrao = criarEstatisticasVazias();
+
+        // Garante que todos os modos e campos existam
+        Object.keys(padrao).forEach(modo => {
+            dados[modo] = {
+                ...padrao[modo],
+                ...(dados[modo] || {})
+            };
+
+            if (!Array.isArray(dados[modo].distribuicao)) {
+                dados[modo].distribuicao = Array(9).fill(0);
+            }
+        });
+
+        return dados;
+
+    } catch (erro) {
+        console.error("Erro ao carregar estatísticas:", erro);
+        return criarEstatisticasVazias();
+    }
+}
+
+let dadosEstatisticas = carregarEstatisticas();
+
+function salvarEstatisticas() {
+    localStorage.setItem(
+        CHAVE_ESTATISTICAS,
+        JSON.stringify(dadosEstatisticas)
+    );
+}
+
+function registrarResultado(vitoria, tentativas) {
+    const registro = dadosEstatisticas[modoAtual];
+
+    registro.partidas++;
+
+    if (vitoria) {
+        registro.vitorias++;
+        registro.sequenciaAtual++;
+
+        registro.melhorSequencia = Math.max(
+            registro.melhorSequencia,
+            registro.sequenciaAtual
+        );
+
+        const indice = tentativas - 1;
+
+        if (indice >= 0 && indice < registro.distribuicao.length) {
+            registro.distribuicao[indice]++;
+        }
+
+    } else {
+        registro.derrotas++;
+        registro.sequenciaAtual = 0;
+    }
+
+    salvarEstatisticas();
+}
+
+function mostrarEstatisticas(modo) {
+    modoEstatisticaSelecionado = modo;
+
+    const registro = dadosEstatisticas[modo];
+    const conteudo = document.querySelector("#conteudo-estatisticas");
+
+    document.querySelectorAll(".estatistica-modo").forEach(botao => {
+        botao.classList.toggle(
+            "ativo",
+            botao.dataset.modo === modo
+        );
+    });
+
+    const aproveitamento = registro.partidas > 0
+        ? Math.round((registro.vitorias / registro.partidas) * 100)
+        : 0;
+
+    const maiorDistribuicao = Math.max(
+        ...registro.distribuicao,
+        1
+    );
+
+    const quantidadeTentativas = linhasPorModo[modo];
+
+    let distribuicaoHTML = "";
+
+    for (let i = 0; i < quantidadeTentativas; i++) {
+        const quantidade = registro.distribuicao[i] || 0;
+
+        const largura = quantidade > 0
+            ? Math.max((quantidade / maiorDistribuicao) * 100, 5)
+            : 0;
+
+        distribuicaoHTML += `
+            <div class="distribuicao-linha">
+                <span>${i + 1}</span>
+
+                <div class="distribuicao-barra">
+                    <div
+                        class="distribuicao-preenchimento"
+                        style="width: ${largura}%"
+                    >
+                        ${quantidade > 0 ? quantidade : ""}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    conteudo.innerHTML = `
+        <div class="estatisticas-resumo">
+
+            <div class="estatistica-card">
+                <span class="estatistica-valor">
+                    ${registro.partidas}
+                </span>
+                <span class="estatistica-legenda">
+                    PARTIDAS
+                </span>
+            </div>
+
+            <div class="estatistica-card">
+                <span class="estatistica-valor">
+                    ${registro.derrotas}
+                </span>
+                <span class="estatistica-legenda">
+                    DERROTAS
+                </span>
+            </div>
+
+            <div class="estatistica-card">
+                <span class="estatistica-valor">
+                    ${aproveitamento}%
+                </span>
+                <span class="estatistica-legenda">
+                    VITÓRIAS
+                </span>
+            </div>
+
+            <div class="estatistica-card">
+                <span class="estatistica-valor">
+                    ${registro.vitorias}
+                </span>
+                <span class="estatistica-legenda">
+                    VENCIDAS
+                </span>
+            </div>
+
+        </div>
+
+        <div class="estatisticas-sequencias">
+
+            <div class="estatistica-card">
+                <span class="estatistica-valor">
+                    ${registro.sequenciaAtual}
+                </span>
+                <span class="estatistica-legenda">
+                    SEQUÊNCIA ATUAL
+                </span>
+            </div>
+
+            <div class="estatistica-card">
+                <span class="estatistica-valor">
+                    ${registro.melhorSequencia}
+                </span>
+                <span class="estatistica-legenda">
+                    MELHOR SEQUÊNCIA
+                </span>
+            </div>
+
+        </div>
+
+        <div class="estatisticas-distribuicao">
+            <h3>Distribuição das tentativas</h3>
+            ${distribuicaoHTML}
+        </div>
+
+        ${registro.partidas === 0 ? `
+            <div class="estatisticas-vazio">
+                Suas estatísticas aparecerão aqui após a primeira partida.
+            </div>
+        ` : ""}
+    `;
+}
+
+// ==========================================
+// CONTROLE DOS MODAIS DE INFORMAÇÃO
+// ==========================================
+
+function abrirModalInfo(id) {
+    document.querySelector(`#${id}`).classList.add("aberto");
+}
+
+function fecharModalInfo(id) {
+    document.querySelector(`#${id}`).classList.remove("aberto");
+}
+
+// Abrir estatísticas
+document.querySelector("#btn-estatisticas").addEventListener("click", () => {
+    mostrarEstatisticas(modoAtual);
+    abrirModalInfo("modal-estatisticas");
+});
+
+// Abrir como jogar
+document.querySelector("#btn-como-jogar").addEventListener("click", () => {
+    abrirModalInfo("modal-como-jogar");
+});
+
+// Trocar modalidade dentro das estatísticas
+document.querySelectorAll(".estatistica-modo").forEach(botao => {
+    botao.addEventListener("click", () => {
+        mostrarEstatisticas(botao.dataset.modo);
+    });
+});
+
+// Fechar pelos botões X
+document.querySelectorAll("[data-fechar-modal]").forEach(botao => {
+    botao.addEventListener("click", () => {
+        fecharModalInfo(botao.dataset.fecharModal);
+    });
+});
+
+// Fechar clicando fora do conteúdo
+document.querySelectorAll(".modal-info-overlay").forEach(modal => {
+    modal.addEventListener("click", evento => {
+        if (evento.target === modal) {
+            modal.classList.remove("aberto");
+        }
+    });
+});
+
+// Fechar com ESC
+document.addEventListener("keydown", evento => {
+    if (evento.key === "Escape") {
+        document.querySelectorAll(".modal-info-overlay").forEach(modal => {
+            modal.classList.remove("aberto");
+        });
+    }
+});

@@ -1279,3 +1279,524 @@ body {
     justify-content: center;
     gap: 8px;
 }
+
+
+/* ==========================================
+   ORGANIZAÇÃO DOS TABULEIROS
+========================================== */
+
+#game-board.container {
+    display: grid !important;
+
+    /* Uma coluna para cada tabuleiro */
+    grid-template-columns: repeat(
+        var(--quantidade-tabuleiros),
+        max-content
+    ) !important;
+
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+
+    justify-content: center;
+    align-items: start;
+
+    gap: 24px;
+
+    width: max-content;
+    max-width: none;
+    margin: 0 auto;
+}
+
+/* Impede que os tabuleiros sejam comprimidos */
+#game-board .tabuleiro-individual {
+    width: max-content;
+    min-width: max-content;
+    flex-shrink: 0;
+}
+
+/* Todas as linhas dos tabuleiros */
+#game-board .tabuleiro-individual > div[class^="cards-"] {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+/* Permite rolagem horizontal em telas menores */
+#tabuleiro {
+    overflow-x: auto;
+}
+
+
+
+/* ==========================================
+   ESTADO VISUAL DAS LINHAS
+========================================== */
+
+/* Linha que está recebendo a tentativa */
+#game-board .linha-ativa input {
+    opacity: 1;
+    filter: none;
+    transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+/* Linha ativa dos tabuleiros que não recebem digitação */
+#game-board .linha-ativa input:disabled {
+    opacity: 1;
+    cursor: default;
+}
+
+/* Linhas futuras: apagadas e bloqueadas */
+#game-board .linha-bloqueada input {
+    opacity: 0.25;
+    filter: grayscale(1);
+    cursor: not-allowed;
+    pointer-events: none;
+    transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+/* Linhas que já receberam tentativas */
+#game-board .linha-finalizada input {
+    opacity: 1;
+    cursor: default;
+}
+
+/* ==========================================
+   TECLADO VIRTUAL
+========================================== */
+
+.tecla {
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+.tecla:hover {
+    filter: brightness(1.2);
+}
+
+.tecla:active {
+    transform: scale(0.92);
+}
+
+.tecla-especial {
+    padding: 0 12px;
+    min-width: 48px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Evita que o clique no teclado deixe um foco visual indesejado */
+.tecla:focus {
+    outline: none;
+}
+
+
+/* POP-UP DE AVISO */
+.aviso-popup {
+    position: fixed;
+    top: 85px;
+    left: 50%;
+    transform: translate(-50%, -15px);
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px 20px;
+    background: #1A2035;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 12px;
+
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    z-index: 9999;
+
+    transition: opacity 0.25s ease, 
+                transform 0.25s ease,
+                visibility 0.25s ease;
+}
+
+.aviso-popup.visivel {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+
+.aviso-icone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+
+    border-radius: 50%;
+    background: rgba(255, 180, 70, 0.15);
+    color: #FFB446;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* ==========================================
+   MODAIS DE INFORMAÇÃO
+========================================== */
+
+.modal-info-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(3, 6, 18, 0.82);
+    backdrop-filter: blur(8px);
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.modal-info-overlay.aberto {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-info {
+    width: 100%;
+    max-width: 540px;
+    max-height: 85vh;
+    overflow-y: auto;
+
+    padding: 28px;
+
+    background: #141A2D;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 18px;
+
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
+
+    transform: translateY(12px);
+    transition: transform 0.25s ease;
+}
+
+.modal-info-overlay.aberto .modal-info {
+    transform: translateY(0);
+}
+
+.modal-info-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.modal-info-header h2 {
+    margin: 0;
+    color: #FFFFFF;
+    font-size: 19px;
+    letter-spacing: 1px;
+}
+
+.modal-info-header p {
+    margin: 7px 0 0;
+    color: #929BB4;
+    font-size: 13px;
+}
+
+.fechar-modal-info {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.06);
+    color: #AAB3CA;
+
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.fechar-modal-info:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #FFFFFF;
+}
+
+/* ==========================================
+   COMO JOGAR
+========================================== */
+
+.como-jogar-conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+}
+
+.como-jogar-secao h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 0 0 10px;
+    color: #FFFFFF;
+    font-size: 15px;
+}
+
+.como-jogar-secao h3 span {
+    color: #3985F7;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.como-jogar-secao > p {
+    margin: 0;
+    color: #AAB3CA;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.regras-modos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 9px;
+    margin: 14px 0;
+}
+
+.regras-modos div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+}
+
+.regras-modos strong {
+    color: #FFFFFF;
+    font-size: 12px;
+}
+
+.regras-modos span {
+    color: #929BB4;
+    font-size: 11px;
+}
+
+.exemplos-cores {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.exemplo-cor {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.bloco-cor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+    border-radius: 7px;
+
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.bloco-cor.correto {
+    background: #38A169;
+}
+
+.bloco-cor.presente {
+    background: #D6A52B;
+}
+
+.bloco-cor.ausente {
+    background: #454B5D;
+}
+
+.exemplo-cor strong {
+    color: #FFFFFF;
+    font-size: 13px;
+}
+
+.exemplo-cor p {
+    margin: 3px 0 0;
+    color: #929BB4;
+    font-size: 12px;
+}
+
+/* ==========================================
+   ESTATÍSTICAS
+========================================== */
+
+.estatisticas-modos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    margin-bottom: 22px;
+}
+
+.estatistica-modo {
+    padding: 10px 5px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.04);
+    color: #929BB4;
+
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.estatistica-modo:hover {
+    background: rgba(57, 133, 247, 0.12);
+    color: #FFFFFF;
+}
+
+.estatistica-modo.ativo {
+    background: rgba(57, 133, 247, 0.16);
+    border-color: #3985F7;
+    color: #FFFFFF;
+}
+
+.estatisticas-resumo {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+@media (max-width: 480px) {
+    .estatisticas-resumo {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.estatistica-card {
+    padding: 15px 8px;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 11px;
+}
+
+.estatistica-valor {
+    display: block;
+    color: #FFFFFF;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.estatistica-legenda {
+    display: block;
+    margin-top: 6px;
+    color: #929BB4;
+    font-size: 10px;
+}
+
+.estatisticas-sequencias {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.estatisticas-sequencias .estatistica-card {
+    padding: 13px;
+}
+
+.estatisticas-distribuicao {
+    margin-top: 24px;
+}
+
+.estatisticas-distribuicao h3 {
+    margin: 0 0 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+.distribuicao-linha {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 9px 0;
+    color: #AAB3CA;
+    font-size: 12px;
+}
+
+.distribuicao-barra {
+    flex: 1;
+    height: 21px;
+    overflow: hidden;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.distribuicao-preenchimento {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    height: 100%;
+    min-width: 0;
+    padding-right: 7px;
+
+    border-radius: 5px;
+    background: linear-gradient(90deg, #3985F7, #635BDB);
+
+    color: #FFFFFF;
+    font-size: 10px;
+    font-weight: 700;
+    transition: width 0.3s ease;
+}
+
+.estatisticas-vazio {
+    padding: 28px 10px;
+    text-align: center;
+    color: #929BB4;
+    font-size: 13px;
+}
+
+@media (max-width: 480px) {
+    .modal-info {
+        padding: 21px;
+    }
+
+    .estatistica-valor {
+        font-size: 21px;
+    }
+
+    .estatistica-legenda {
+        font-size: 9px;
+    }
+    
+}

@@ -75,7 +75,7 @@
             <div class="header-actions">
 
                 <!-- ESTATÍSTICAS -->
-                <button class="icon-button" title="Estatísticas">
+                <button class="icon-button" id="btn-estatisticas" title="Estatísticas">
 
                     <svg viewBox="0 0 24 24" width="22" height="22"
                          fill="none" stroke="currentColor"
@@ -144,6 +144,121 @@
 
         </div>
 
+    </div>
+
+    <!-- Pop-Up de aviso de palavra não aceitavél -->
+    <div id="aviso-popup" class="aviso-popup">
+        <span class="aviso-icone">!</span>
+        <span id="aviso-texto"></span>
+    </div>
+
+    <!-- MODAL DE ESTATÍSTICAS -->
+    <div class="modal-info-overlay" id="modal-estatisticas">
+        <div class="modal-info">
+            <div class="modal-info-header">
+                <div>
+                    <h2>ESTATÍSTICAS</h2>
+                    <p>Acompanhe seu desempenho no TERMO.</p>
+                </div>
+
+                <button class="fechar-modal-info" data-fechar-modal="modal-estatisticas">
+                    &times;
+                </button>
+            </div>
+
+            <div class="estatisticas-modos" id="estatisticas-modos">
+                <button class="estatistica-modo ativo" data-modo="solo">SOLO</button>
+                <button class="estatistica-modo" data-modo="dueto">DUETO</button>
+                <button class="estatistica-modo" data-modo="trio">TRIO</button>
+                <button class="estatistica-modo" data-modo="quarteto">QUARTETO</button>
+            </div>
+
+            <div id="conteudo-estatisticas"></div>
+        </div>
+    </div>
+
+    <!-- MODAL COMO JOGAR -->
+    <div class="modal-info-overlay" id="modal-como-jogar">
+        <div class="modal-info">
+            <div class="modal-info-header">
+                <div>
+                    <h2>COMO JOGAR</h2>
+                    <p>Aprenda as regras e descubra como jogar.</p>
+                </div>
+
+                <button class="fechar-modal-info" data-fechar-modal="modal-como-jogar">
+                    &times;
+                </button>
+            </div>
+
+            <div class="como-jogar-conteudo">
+
+                <section class="como-jogar-secao">
+                    <h3><span>01</span> O objetivo</h3>
+                    <p>
+                        Descubra a palavra secreta de cinco letras.
+                        Você precisa acertar a palavra dentro do número
+                        de tentativas disponíveis.
+                    </p>
+                </section>
+
+                <section class="como-jogar-secao">
+                    <h3><span>02</span> Escolha seu modo</h3>
+
+                    <div class="regras-modos">
+                        <div><strong>SOLO</strong><span>1 palavra · 6 tentativas</span></div>
+                        <div><strong>DUETO</strong><span>2 palavras · 7 tentativas</span></div>
+                        <div><strong>TRIO</strong><span>3 palavras · 8 tentativas</span></div>
+                        <div><strong>QUARTETO</strong><span>4 palavras · 9 tentativas</span></div>
+                    </div>
+
+                    <p>
+                        Nos modos com mais de uma palavra, cada tentativa
+                        é avaliada em todos os tabuleiros ao mesmo tempo.
+                    </p>
+                </section>
+
+                <section class="como-jogar-secao">
+                    <h3><span>03</span> Entenda as cores</h3>
+
+                    <div class="exemplos-cores">
+                        <div class="exemplo-cor">
+                            <span class="bloco-cor correto">A</span>
+                            <div>
+                                <strong>Verde</strong>
+                                <p>Letra correta na posição correta.</p>
+                            </div>
+                        </div>
+
+                        <div class="exemplo-cor">
+                            <span class="bloco-cor presente">A</span>
+                            <div>
+                                <strong>Amarelo</strong>
+                                <p>A letra existe, mas está em outra posição.</p>
+                            </div>
+                        </div>
+
+                        <div class="exemplo-cor">
+                            <span class="bloco-cor ausente">A</span>
+                            <div>
+                                <strong>Cinza</strong>
+                                <p>A letra não faz parte da palavra.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="como-jogar-secao">
+                    <h3><span>04</span> Como digitar</h3>
+                    <p>
+                        Use o teclado do computador ou clique nas letras
+                        do teclado virtual. Pressione ENTER para confirmar
+                        sua tentativa e BACKSPACE para apagar uma letra.
+                    </p>
+                </section>
+
+            </div>
+        </div>
     </div>
 
     <script src="js/palavras.js"></script>
