@@ -12,6 +12,7 @@ const modalTitulo = document.querySelector("#modal-titulo");
 const modalDescricao = document.querySelector("#modal-descricao");
 const modalIcone = document.querySelector("#modal-icone");
 const respostasJogo = document.querySelector("#respostas-jogo");
+const botaoCompartilhar = document.querySelector("#btn-compartilhar");
 const avisoPopup = document.querySelector("#aviso-popup");
 const avisoTexto = document.querySelector("#aviso-texto");
 const CHAVE_ESTATISTICAS = "termo_estatisticas";
@@ -827,6 +828,137 @@ function mostrarModalResultado(vitoria) {
     });
 
     modalResultado.classList.add("visivel");
+
+    // ==========================================
+    // COMPARTILHANDO O RESULTADO
+    // ==========================================
+
+    function gerarResultadoCompartilhamento() {
+
+        const simbolos = {
+            correct: "🟩",
+            present: "🟨",
+            absent: "⬛"
+        };
+
+        const nomesModos = {
+            solo: "SOLO",
+            dueto: "DUETO",
+            trio: "TRIO",
+            quarteto: "QUARTETO"
+        };
+
+        // Conta quantas tentativas foram realmente realizadas
+        const tentativasRealizadas = tabuleiros[0].linhas.filter(linha => {
+
+            return Array.from(linha.children).every(celula =>
+                ["correct", "present", "absent"].some(classe =>
+                    celula.classList.contains(classe)
+                )
+            );
+
+        }).length;
+
+        let resultado = `TERMO - PARTYHUB 🎮\n`;
+        resultado += `Modo: ${nomesModos[modoAtual]}\n`;
+        resultado += `Tentativas: ${tentativasRealizadas}/${TOTAL_LINHAS}\n\n`;
+
+        // Percorre cada tabuleiro
+        tabuleiros.forEach((tabuleiro, indice) => {
+
+            const nomeTabuleiro = nomesModos[
+                ["solo", "dueto", "trio", "quarteto"][indice]
+            ];
+
+            resultado += `${nomeTabuleiro}\n`;
+
+            // Percorre as tentativas daquele tabuleiro
+            tabuleiro.linhas.forEach(linha => {
+
+                const celulas = Array.from(linha.children);
+
+                // Ignora linhas que ainda não foram jogadas
+                const linhaRespondida = celulas.every(celula =>
+                    ["correct", "present", "absent"].some(classe =>
+                        celula.classList.contains(classe)
+                    )
+                );
+
+                if (!linhaRespondida) return;
+
+                const linhaResultado = celulas.map(celula => {
+
+                    return ["correct", "present", "absent"]
+                        .find(classe => celula.classList.contains(classe));
+
+                }).map(classe => simbolos[classe]).join("");
+
+                resultado += `${linhaResultado}\n`;
+
+            });
+
+            resultado += "\n";
+
+        });
+
+        resultado += "Jogue também no PartyHub!";
+
+        return resultado;
+
+    }
+
+
+    // ==========================================
+    // AÇÃO DO BOTÃO COMPARTILHAR
+    // ==========================================
+
+    async function compartilharResultado() {
+
+        const textoResultado = gerarResultadoCompartilhamento();
+
+        // Compartilhamento nativo (celular e navegadores compatíveis)
+        if (navigator.share) {
+
+            try {
+
+                await navigator.share({
+                    title: "Meu resultado no TERMO",
+                    text: textoResultado
+                });
+
+                return;
+
+            } catch (erro) {
+
+                // Se o usuário cancelar, não tenta copiar
+                if (erro.name === "AbortError") return;
+
+                console.error("Erro ao compartilhar:", erro);
+
+            }
+
+        }
+
+        // Alternativa: copiar para a área de transferência
+        try {
+
+            await navigator.clipboard.writeText(textoResultado);
+
+            mostrarAviso("Resultado copiado! É só compartilhar.");
+
+        } catch (erro) {
+
+            console.error("Erro ao copiar:", erro);
+
+            mostrarAviso("Não foi possível compartilhar o resultado.");
+
+        }
+
+    }
+
+
+    // Evento do botão
+    botaoCompartilhar.addEventListener("click", compartilharResultado);
 
 }
 

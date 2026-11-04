@@ -594,9 +594,6 @@ input.absent {
 }
 
 /* TECLA CORRETA */
-
-/* TECLA CORRETA */
-
 .tecla.correct {
     background: linear-gradient(145deg, #538D4E, #367A43);
     border-color: #75B96D;
@@ -622,7 +619,6 @@ input.absent {
 }
 
 /* TECLA AUSENTE */
-
 .tecla.absent {
     background: #202638;
     border-color: rgba(255, 255, 255, 0.035);
@@ -1921,3 +1917,37 @@ body {
     }
 
 }
+
+/* ==========================================
+   BOTÃO COMPARTILHAR RESULTADO
+========================================== */
+
+.btn-compartilhar {
+    width: 100%;
+    margin-top: 12px;
+    padding: 14px 18px;
+
+    border: 1px solid rgba(160, 160, 255, 0.2);
+    border-radius: 12px;
+
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.btn-compartilhar:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.15);
+}
+
+.btn-compartilhar:active {
+    transform: scale(0.98);
+}
+
