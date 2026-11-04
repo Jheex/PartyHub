@@ -1,0 +1,1391 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sobre | PARTYHUB</title>
+
+    <style>
+        /* =========================================
+           1. CONFIGURAÇÕES GERAIS
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #030712;
+            --bg-secondary: #0B1020;
+            --bg-card: rgba(20, 26, 45, 0.70);
+
+            --purple: #A78BFA;
+            --blue: #22D3EE;
+
+            --text-primary: #FFFFFF;
+            --text-secondary: #A1A1AA;
+
+            --border-color: rgba(160, 160, 255, 0.13);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 86%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #A78BFA, #22D3EE);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .section-label {
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 40px);
+            letter-spacing: -1px;
+            margin-bottom: 22px;
+        }
+
+        /* =========================================
+           2. CABEÇALHO
+        ========================================= */
+
+        header {
+            width: 100%;
+            padding: 18px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: rgba(11, 16, 32, 0.85);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid var(--border-color);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .logo span {
+            background: linear-gradient(90deg, #A78BFA, #22D3EE);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: white;
+        }
+
+        /* =========================================
+           3. BANNER PRINCIPAL
+        ========================================= */
+
+        .banner {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: #10152B;
+        }
+
+        .banner img {
+            display: block;
+            width: 100%;
+            height: 390px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .banner::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                90deg,
+                rgba(3, 7, 18, 0.65),
+                rgba(3, 7, 18, 0.08)
+            );
+            pointer-events: none;
+        }
+
+        /* =========================================
+           4. APRESENTAÇÃO
+        ========================================= */
+
+        .hero {
+            position: relative;
+            padding: 90px 20px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 550px;
+            height: 350px;
+            background: #6D28D9;
+            opacity: 0.14;
+            filter: blur(130px);
+            border-radius: 50%;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            background: rgba(167, 139, 250, 0.08);
+            border-radius: 30px;
+
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 6vw, 65px);
+            line-height: 1.12;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: auto;
+            color: var(--text-secondary);
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+        .hero-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: 30px;
+            padding: 15px 28px;
+
+            border-radius: 12px;
+            background: linear-gradient(100deg, #7C3AED, #4F46E5);
+
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+        }
+
+        /* =========================================
+           5. SOBRE A PLATAFORMA
+        ========================================= */
+
+        .about {
+            padding: 85px 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 65px;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            line-height: 1.9;
+            font-size: 15px;
+            margin-bottom: 18px;
+        }
+
+        .about-highlight {
+            padding: 35px;
+            border-radius: 22px;
+
+            background: linear-gradient(
+                145deg,
+                rgba(124, 58, 237, 0.14),
+                rgba(34, 211, 238, 0.06)
+            );
+
+            border: 1px solid var(--border-color);
+        }
+
+        .highlight-icon {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .about-highlight h3 {
+            font-size: 23px;
+            margin-bottom: 14px;
+        }
+
+        .about-highlight p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        /* =========================================
+           6. NOSSA PROPOSTA
+        ========================================= */
+
+        .proposal {
+            padding: 95px 0;
+            text-align: center;
+        }
+
+        .proposal-header {
+            max-width: 650px;
+            margin: 0 auto 50px;
+        }
+
+        .proposal-header p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .feature-card {
+            padding: 32px 25px;
+            text-align: left;
+
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(167, 139, 250, 0.45);
+            background: rgba(30, 36, 60, 0.8);
+        }
+
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(167, 139, 250, 0.12);
+            border-radius: 14px;
+
+            font-size: 25px;
+            margin-bottom: 23px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            margin-bottom: 13px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* =========================================
+           7. TIPOS DE JOGOS
+        ========================================= */
+
+        .games-section {
+            padding: 85px 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .games-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .games-header p {
+            color: var(--text-secondary);
+            margin-top: 12px;
+            font-size: 15px;
+        }
+
+        .game-types {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .game-type {
+            padding: 28px 18px;
+            text-align: center;
+
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+
+            transition: 0.3s;
+        }
+
+        .game-type:hover {
+            transform: translateY(-5px);
+            border-color: rgba(34, 211, 238, 0.35);
+        }
+
+        .game-type .emoji {
+            display: block;
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
+
+        .game-type h3 {
+            font-size: 15px;
+            margin-bottom: 9px;
+        }
+
+        .game-type p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* =========================================
+           8. AVISO DE PORTFÓLIO
+        ========================================= */
+
+        .portfolio-notice {
+            padding: 35px;
+            margin: 0 auto;
+            max-width: 900px;
+
+            background: rgba(34, 211, 238, 0.05);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 18px;
+
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .portfolio-notice .notice-icon {
+            font-size: 30px;
+        }
+
+        .portfolio-notice h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-notice p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        /* =========================================
+           9. POLÍTICAS E TERMOS
+        ========================================= */
+
+        .legal-section {
+            padding: 90px 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .legal-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 45px;
+        }
+
+        .legal-header p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .legal-navigation {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .legal-navigation a {
+            padding: 12px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .legal-navigation a:hover {
+            color: white;
+            border-color: var(--purple);
+            background: rgba(167, 139, 250, 0.08);
+        }
+
+        .legal-card {
+            padding: 38px;
+            margin-bottom: 25px;
+
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+        }
+
+        .legal-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .legal-card .updated {
+            color: var(--purple);
+            font-size: 12px;
+            margin-bottom: 28px;
+            display: block;
+        }
+
+        .legal-card h4 {
+            font-size: 16px;
+            margin: 25px 0 10px;
+            color: #E9D5FF;
+        }
+
+        .legal-card p,
+        .legal-card li {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .legal-card ul {
+            padding-left: 22px;
+            margin-top: 10px;
+        }
+
+        .legal-card li {
+            margin-bottom: 7px;
+        }
+
+        /* =========================================
+           10. CHAMADA FINAL
+        ========================================= */
+
+        .final-cta {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(30px, 4vw, 44px);
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .cta-content p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* =========================================
+           11. RODAPÉ
+        ========================================= */
+
+        footer {
+            padding: 35px 7%;
+            border-top: 1px solid var(--border-color);
+            background: rgba(11, 16, 32, 0.8);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .footer-logo span {
+            color: var(--purple);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            font-size: 12px;
+            transition: 0.3s;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        /* =========================================
+           12. RESPONSIVIDADE
+        ========================================= */
+
+        @media (max-width: 900px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .game-types {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .banner img {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 15px 5%;
+                flex-wrap: wrap;
+                gap: 18px;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+
+            nav {
+                gap: 17px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            .banner img {
+                height: 190px;
+            }
+
+            .hero {
+                padding: 70px 20px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .about,
+            .proposal,
+            .games-section,
+            .legal-section {
+                padding: 70px 0;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .game-types {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .game-type {
+                padding: 22px 12px;
+            }
+
+            .portfolio-notice {
+                padding: 24px;
+                flex-direction: column;
+            }
+
+            .legal-card {
+                padding: 25px 20px;
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header>
+
+        <a href="index.html" class="logo" aria-label="PartyHub - Página inicial">
+            <img src="img/logo-partyhub.png" alt="Logo PartyHub">
+            <span>PARTYHUB</span>
+        </a>
+
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="index.html#jogos">Jogos</a>
+            <a href="sobre.html" class="active">Sobre</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <!-- =========================================
+             BANNER
+        ========================================== -->
+
+        <section class="banner">
+            <img
+                src="img/banner-partyhub.png"
+                alt="Banner oficial da plataforma PARTYHUB">
+        </section>
+
+
+        <!-- =========================================
+             APRESENTAÇÃO
+        ========================================== -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="tag">CONHEÇA O PARTYHUB</span>
+
+                <h1>
+                    Muito mais que jogos.
+                    <br>
+                    <span class="gradient-text">
+                        Uma experiência para se divertir!
+                    </span>
+                </h1>
+
+                <p>
+                    Um espaço criado para reunir diversão, desafios e criatividade.
+                    Descubra diferentes jogos online e aproveite cada partida
+                    em uma plataforma feita para você.
+                </p>
+
+                <a href="index.html#jogos" class="hero-button">
+                    Explorar jogos →
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             SOBRE A PLATAFORMA
+        ========================================== -->
+
+        <section class="about">
+
+            <div class="container">
+
+                <div class="about-content">
+
+                    <div class="about-text">
+
+                        <div class="section-label">QUEM SOMOS</div>
+
+                        <h2 class="section-title">
+                            O que é o <span class="gradient-text">PARTYHUB?</span>
+                        </h2>
+
+                        <p>
+                            O PARTYHUB é uma plataforma independente de jogos
+                            online, desenvolvida com a ideia de reunir diferentes
+                            experiências em um único lugar.
+                        </p>
+
+                        <p>
+                            Aqui, você encontra jogos de palavras, lógica,
+                            estratégia e raciocínio. Cada jogo oferece uma
+                            experiência diferente, seja para testar suas
+                            habilidades ou simplesmente passar o tempo.
+                        </p>
+
+                        <p>
+                            Nosso objetivo é proporcionar uma experiência
+                            simples, acessível e divertida, permitindo que
+                            qualquer pessoa possa explorar os jogos e
+                            aproveitar cada desafio.
+                        </p>
+
+                    </div>
+
+                    <div class="about-highlight">
+
+                        <div class="highlight-icon">🎮</div>
+
+                        <h3>Um lugar. Muitas possibilidades.</h3>
+
+                        <p>
+                            O PARTYHUB nasceu para ser uma central de jogos
+                            online, onde diferentes ideias e desafios se
+                            encontram em uma experiência única.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             NOSSA PROPOSTA
+        ========================================== -->
+
+        <section class="proposal">
+
+            <div class="container">
+
+                <div class="proposal-header">
+
+                    <div class="section-label">NOSSA PROPOSTA</div>
+
+                    <h2 class="section-title">
+                        Feito para <span class="gradient-text">jogar e explorar.</span>
+                    </h2>
+
+                    <p>
+                        Acreditamos que jogar deve ser algo simples e divertido.
+                        Por isso, buscamos criar uma plataforma que valorize
+                        a experiência do jogador em cada detalhe.
+                    </p>
+
+                </div>
+
+                <div class="features">
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🧩</div>
+                        <h3>Desafios para a mente</h3>
+                        <p>
+                            Jogos que estimulam o raciocínio, a concentração,
+                            a lógica e a criatividade.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Simples e acessível</h3>
+                        <p>
+                            Uma experiência intuitiva, com jogos fáceis
+                            de acessar e começar a jogar.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">✨</div>
+                        <h3>Sempre explorando</h3>
+                        <p>
+                            Um espaço aberto para novas ideias, modalidades
+                            e experiências de jogo.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             TIPOS DE JOGOS
+        ========================================== -->
+
+        <section class="games-section" id="categorias">
+
+            <div class="container">
+
+                <div class="games-header">
+
+                    <div class="section-label">NOSSO UNIVERSO</div>
+
+                    <h2 class="section-title">
+                        Diferentes formas de <span class="gradient-text">se divertir.</span>
+                    </h2>
+
+                    <p>
+                        Explore diferentes estilos de jogos disponíveis
+                        no universo PARTYHUB.
+                    </p>
+
+                </div>
+
+                <div class="game-types">
+
+                    <div class="game-type">
+                        <span class="emoji">🔤</span>
+                        <h3>Palavras</h3>
+                        <p>Descubra palavras e teste seu vocabulário.</p>
+                    </div>
+
+                    <div class="game-type">
+                        <span class="emoji">♟️</span>
+                        <h3>Estratégia</h3>
+                        <p>Planeje suas jogadas e desafie sua mente.</p>
+                    </div>
+
+                    <div class="game-type">
+                        <span class="emoji">🧠</span>
+                        <h3>Lógica</h3>
+                        <p>Resolva problemas e encontre soluções.</p>
+                    </div>
+
+                    <div class="game-type">
+                        <span class="emoji">🎯</span>
+                        <h3>Desafios</h3>
+                        <p>Supere obstáculos e coloque suas habilidades à prova.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             AVISO SOBRE O PROJETO
+        ========================================== -->
+
+        <section class="proposal">
+
+            <div class="container">
+
+                <div class="portfolio-notice">
+
+                    <div class="notice-icon">💻</div>
+
+                    <div>
+                        <h3>Um projeto de portfólio</h3>
+
+                        <p>
+                            O PARTYHUB é um projeto pessoal e independente,
+                            desenvolvido com finalidade educacional e de
+                            demonstração de habilidades em desenvolvimento web.
+                            A plataforma não possui finalidade comercial,
+                            não realiza vendas e não oferece serviços pagos.
+                            Seu propósito é apresentar estudos, experimentos
+                            e projetos desenvolvidos na área de tecnologia.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             POLÍTICAS E TERMOS
+        ========================================== -->
+
+        <section class="legal-section" id="informacoes-legais">
+
+            <div class="container">
+
+                <div class="legal-header">
+
+                    <div class="section-label">INFORMAÇÕES IMPORTANTES</div>
+
+                    <h2 class="section-title">
+                        Transparência e <span class="gradient-text">privacidade.</span>
+                    </h2>
+
+                    <p>
+                        Aqui você encontra informações sobre a utilização
+                        da plataforma, privacidade e condições de acesso
+                        ao PARTYHUB.
+                    </p>
+
+                </div>
+
+
+                <div class="legal-navigation">
+
+                    <a href="#privacidade">
+                        🔒 Política de Privacidade
+                    </a>
+
+                    <a href="#termos">
+                        📄 Termos de Uso
+                    </a>
+
+                </div>
+
+
+                <!-- POLÍTICA DE PRIVACIDADE -->
+
+                <article class="legal-card" id="privacidade">
+
+                    <div class="section-label">PRIVACIDADE</div>
+
+                    <h3>Política de Privacidade</h3>
+
+                    <span class="updated">
+                        Última atualização: 04 de novembro de 2026
+                    </span>
+
+                    <p>
+                        Esta Política de Privacidade explica como o PARTYHUB
+                        trata informações relacionadas à navegação em sua
+                        plataforma. Nosso compromisso é respeitar a privacidade
+                        dos visitantes e utilizar apenas os recursos necessários
+                        ao funcionamento do projeto.
+                    </p>
+
+
+                    <h4>1. Sobre o projeto</h4>
+
+                    <p>
+                        O PARTYHUB é um projeto pessoal de portfólio, sem
+                        finalidade comercial. Não é uma loja virtual, não
+                        comercializa produtos e não oferece serviços pagos.
+                    </p>
+
+
+                    <h4>2. Dados pessoais</h4>
+
+                    <p>
+                        A plataforma não possui, atualmente, sistema próprio
+                        de cadastro de usuários, login, pagamento ou formulário
+                        de coleta de dados pessoais.
+                    </p>
+
+                    <p>
+                        Não solicitamos informações como nome, endereço,
+                        telefone ou documentos para permitir o acesso aos jogos.
+                    </p>
+
+
+                    <h4>3. Armazenamento local</h4>
+
+                    <p>
+                        Alguns jogos podem utilizar recursos do próprio
+                        navegador, como armazenamento local, para guardar
+                        informações necessárias à experiência de jogo,
+                        por exemplo, preferências ou progresso.
+                    </p>
+
+                    <p>
+                        Essas informações permanecem no ambiente do navegador
+                        do visitante e podem ser removidas por meio das
+                        configurações de navegação.
+                    </p>
+
+
+                    <h4>4. Hospedagem e dados técnicos</h4>
+
+                    <p>
+                        O PARTYHUB pode ser disponibilizado por serviços
+                        externos de hospedagem. Esses provedores podem
+                        processar informações técnicas de acesso, como
+                        endereço IP, navegador, dispositivo e registros
+                        de conexão, conforme suas próprias políticas
+                        de privacidade.
+                    </p>
+
+
+                    <h4>5. Links externos</h4>
+
+                    <p>
+                        A plataforma poderá apresentar links para sites
+                        ou serviços de terceiros. Ao acessar esses ambientes,
+                        o visitante estará sujeito às políticas e condições
+                        dos respectivos serviços.
+                    </p>
+
+
+                    <h4>6. Cookies</h4>
+
+                    <p>
+                        O PARTYHUB não utiliza, neste momento, sistema próprio
+                        de publicidade ou rastreamento comercial. Entretanto,
+                        serviços de hospedagem ou recursos externos podem
+                        utilizar tecnologias próprias, conforme suas
+                        configurações e políticas.
+                    </p>
+
+
+                    <h4>7. Segurança e privacidade</h4>
+
+                    <p>
+                        Buscamos manter a plataforma simples e limitar
+                        o tratamento de informações ao necessário para
+                        seu funcionamento. Nenhum ambiente digital,
+                        entretanto, pode garantir segurança absoluta.
+                    </p>
+
+
+                    <h4>8. Alterações nesta política</h4>
+
+                    <p>
+                        Esta política poderá ser atualizada caso novas
+                        funcionalidades sejam implementadas ou ocorram
+                        mudanças na forma de funcionamento do PARTYHUB.
+                    </p>
+
+
+                    <h4>9. Contato</h4>
+
+                    <p>
+                        Em caso de dúvidas sobre esta política, o visitante
+                        poderá utilizar os canais de contato disponibilizados
+                        pelo responsável pelo projeto, quando existentes.
+                    </p>
+
+                </article>
+
+
+                <!-- TERMOS DE USO -->
+
+                <article class="legal-card" id="termos">
+
+                    <div class="section-label">CONDIÇÕES DE UTILIZAÇÃO</div>
+
+                    <h3>Termos de Uso</h3>
+
+                    <span class="updated">
+                        Última atualização: 04 de novembro de 2026
+                    </span>
+
+                    <p>
+                        Ao acessar o PARTYHUB, o visitante declara estar
+                        ciente das condições descritas nestes Termos de Uso.
+                        Caso não concorde com elas, recomendamos que
+                        interrompa a utilização da plataforma.
+                    </p>
+
+
+                    <h4>1. Finalidade da plataforma</h4>
+
+                    <p>
+                        O PARTYHUB é um projeto pessoal de portfólio,
+                        desenvolvido exclusivamente para fins educacionais,
+                        experimentais e de demonstração de conhecimentos
+                        em programação e desenvolvimento web.
+                    </p>
+
+                    <p>
+                        A plataforma não possui finalidade comercial,
+                        não realiza vendas, não oferece assinaturas
+                        e não cobra qualquer valor pelo acesso aos jogos.
+                    </p>
+
+
+                    <h4>2. Utilização dos jogos</h4>
+
+                    <p>
+                        Os jogos disponibilizados têm finalidade recreativa
+                        e demonstrativa. O visitante pode utilizá-los
+                        livremente para entretenimento, respeitando
+                        estes termos e a legislação aplicável.
+                    </p>
+
+
+                    <h4>3. Propriedade intelectual</h4>
+
+                    <p>
+                        Os elementos desenvolvidos especificamente para
+                        o PARTYHUB, incluindo códigos, identidade visual,
+                        textos, layouts e outros materiais originais,
+                        são de autoria do responsável pelo projeto ou
+                        utilizados conforme as respectivas licenças.
+                    </p>
+
+                    <p>
+                        Marcas, nomes, imagens ou recursos de terceiros
+                        eventualmente utilizados permanecem sujeitos
+                        aos direitos de seus respectivos titulares.
+                    </p>
+
+                    <p>
+                        Não é permitida a reprodução ou redistribuição
+                        de materiais originais do projeto sem autorização
+                        do respectivo titular, ressalvadas as permissões
+                        legais aplicáveis.
+                    </p>
+
+
+                    <h4>4. Condutas não permitidas</h4>
+
+                    <p>Ao utilizar a plataforma, o visitante concorda em não:</p>
+
+                    <ul>
+                        <li>Utilizar o site para atividades ilícitas;</li>
+                        <li>Tentar comprometer a segurança ou disponibilidade da plataforma;</li>
+                        <li>Distribuir códigos maliciosos por meio do site;</li>
+                        <li>Copiar ou redistribuir materiais protegidos sem autorização;</li>
+                        <li>Utilizar a plataforma de maneira que prejudique outros visitantes.</li>
+                    </ul>
+
+
+                    <h4>5. Disponibilidade</h4>
+
+                    <p>
+                        Por se tratar de um projeto pessoal, o PARTYHUB
+                        poderá passar por alterações, atualizações,
+                        interrupções ou descontinuação sem aviso prévio.
+                        Não há garantia de disponibilidade contínua
+                        ou funcionamento ininterrupto.
+                    </p>
+
+
+                    <h4>6. Limitação de responsabilidade</h4>
+
+                    <p>
+                        A plataforma é disponibilizada para fins
+                        demonstrativos, no estado em que se encontra.
+                        Não garantimos que todos os recursos estejam
+                        livres de erros ou que funcionem em todos
+                        os dispositivos e navegadores.
+                    </p>
+
+
+                    <h4>7. Serviços de terceiros</h4>
+
+                    <p>
+                        Recursos externos utilizados na hospedagem
+                        ou disponibilização da plataforma podem estar
+                        sujeitos a termos, condições e políticas
+                        próprios de seus fornecedores.
+                    </p>
+
+
+                    <h4>8. Alterações nos termos</h4>
+
+                    <p>
+                        Estes Termos de Uso poderão ser modificados
+                        sempre que necessário, especialmente em razão
+                        de novas funcionalidades ou mudanças no projeto.
+                    </p>
+
+
+                    <h4>9. Disposições gerais</h4>
+
+                    <p>
+                        A utilização do PARTYHUB deve respeitar
+                        a legislação brasileira aplicável. Estes termos
+                        representam as condições gerais de utilização
+                        da plataforma.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             CHAMADA FINAL
+        ========================================== -->
+
+        <section class="final-cta">
+
+            <div class="cta-content">
+
+                <div class="section-label">
+                    SUA PRÓXIMA PARTIDA COMEÇA AQUI
+                </div>
+
+                <h2>
+                    Pronto para <span class="gradient-text">jogar?</span>
+                </h2>
+
+                <p>
+                    Explore o PARTYHUB, escolha seu jogo favorito
+                    e descubra novos desafios. A diversão está
+                    a apenas alguns cliques de distância.
+                </p>
+
+                <a href="index.html#jogos" class="hero-button">
+                    Conhecer os jogos →
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         RODAPÉ
+    ========================================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+            PARTY<span>HUB</span>
+        </div>
+
+        <p>
+            © 2026 PARTYHUB. Projeto pessoal de portfólio.
+        </p>
+
+        <div class="footer-links">
+
+            <a href="#privacidade" class="footer-link">
+                Privacidade
+            </a>
+
+            <a href="#termos" class="footer-link">
+                Termos de Uso
+            </a>
+
+            <a href="index.html" class="footer-link">
+                Voltar ao início ↑
+            </a>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
