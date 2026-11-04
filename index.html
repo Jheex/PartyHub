@@ -84,10 +84,31 @@
             gap: 30px;
         }
 
+        
+        /* LOGOTIPO PARTYHUB */
+
         .logo {
-            font-size: 27px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-size: 25px;
             font-weight: 800;
-            letter-spacing: -1px;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+        }
+
+        .logo img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .logo span {
+            background: linear-gradient(90deg, #A78BFA, #22D3EE);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
         }
 
         .logo span {
@@ -596,8 +617,9 @@
                 gap: 18px;
             }
 
-            .logo {
-                font-size: 24px;
+            .logo img {
+                width: 145px;
+                height: 48px;
             }
 
             .nav-links {
@@ -708,8 +730,10 @@
 
         <nav class="navbar">
 
-            <a href="#" class="logo">
-                Party<span>Hub</span>
+            
+            <a href="#" class="logo" aria-label="PartyHub - Página inicial">
+                <img src="img/logo-partyhub.png" alt="Logo PartyHub">
+                <span>PARTYHUB</span>
             </a>
 
             <div class="nav-links">
@@ -867,7 +891,7 @@
                                 JOGAR
                             </a>
 
-                            <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO"
+                            <a href="https://github.com/Jheex/PartyHub/tree/main/games/termo"
                                target="_blank"
                                rel="noopener noreferrer"
                                class="icon-button"
