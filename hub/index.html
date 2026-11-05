@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>PartyHub | Central de Jogos</title>
+        
+</head>
+
+<!-- CABEÇALHO -->
+<div id="header"></div>
+
+<body>
+    <!-- ========================================
+        CONTEÚDO PRINCIPAL
+    ========================================= -->
+
+    <main class="container">
+
+        <!-- CARROSSEL -->
+
+        <section class="hero" id="carrossel">
+
+            <div class="hero-slide active"
+                 style="background-image: url('assets/img/xadrez.png');">
+
+                <div class="hero-content">
+                    <span class="hero-tag">JOGO EM DESTAQUE</span>
+
+                    <h1>XADREZ</h1>
+
+                    <p>
+                        Estratégia, concentração e inteligência.
+                        Prepare suas jogadas e desafie sua mente!
+                    </p>
+
+                    <a href="jogos/projeto/xadrez.html"
+                       class="hero-button">
+                        Jogar agora →
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="hero-slide"
+                 style="background-image: url('assets/img/termo.png');">
+
+                <div class="hero-content">
+                    <span class="hero-tag">DESAFIO DE PALAVRAS</span>
+
+                    <h1>TERMO</h1>
+
+                    <p>
+                        Descubra a palavra secreta em até seis tentativas.
+                        Será que você consegue?
+                    </p>
+
+                    <a href="games/termo/index.html"
+                       class="hero-button">
+                        Jogar agora →
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="hero-slide"
+                 style="background-image: url('assets/img/labirinto.png');">
+
+                <div class="hero-content">
+                    <span class="hero-tag">DESAFIO DE LÓGICA</span>
+
+                    <h1>LABIRINTO</h1>
+
+                    <p>
+                        Encontre a saída, supere os obstáculos
+                        e teste sua capacidade de raciocínio.
+                    </p>
+
+                    <a href="#jogos" class="hero-button">
+                        Explorar jogos →
+                    </a>
+                </div>
+
+            </div>
+
+
+            <button class="hero-arrow hero-prev"
+                    id="anterior-slide"
+                    aria-label="Slide anterior">
+                ‹
+            </button>
+
+            <button class="hero-arrow hero-next"
+                    id="proximo-slide"
+                    aria-label="Próximo slide">
+                ›
+            </button>
+
+            <div class="hero-indicators" id="indicadores"></div>
+
+        </section>
+
+
+        <!-- JOGOS -->
+
+        <section id="jogos">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Jogos em Destaque</h2>
+                    <p>Escolha seu próximo desafio.</p>
+                </div>
+
+                <span class="see-all">EXPLORE O PARTYHUB</span>
+
+            </div>
+
+
+            <div class="games-grid" id="grade-jogos">
+
+
+                <!-- TERMO -->
+
+                <article class="game-card" data-nome="termo">
+
+                    <div class="game-image">
+                        <img src="assets/img/termo.png" alt="Jogo TERMO">
+                    </div>
+
+                    <div class="game-info">
+                        <h3>TERMO</h3>
+                        <p>Teste seu vocabulário.</p>
+
+                        <div class="game-actions">
+
+                            <a href="games/termo/index.html"
+                               class="play-button">
+                                JOGAR
+                            </a>
+
+                            <a href="https://github.com/Jheex/PartyHub/tree/main/games/termo"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="icon-button"
+                               title="Ver código no GitHub"
+                               aria-label="Ver código do TERMO no GitHub">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.51-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.59 1.21 3.22.92.1-.72.39-1.21.7-1.49-2.47-.28-5.07-1.24-5.07-5.51 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.28-2.6 5.23-5.08 5.5.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8z"/>
+                                </svg>
+                            </a>
+
+                            <button class="icon-button share-button"
+                                    title="Compartilhar TERMO"
+                                    aria-label="Compartilhar TERMO"
+                                    aria-expanded="false">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77l-7.12-4.14a3.1 3.1 0 0 0 0-1.42l7.05-4.1a3 3 0 1 0-.94-1.74L8 9.55a3 3 0 1 0 0 4.9l7.12 4.16a3 3 0 1 0 2.88-2.53z"/>
+                                </svg>
+                            </button>
+
+                        </div>
+
+                        <div class="share-menu">
+                            <a href="#" data-share="whatsapp">WhatsApp</a>
+                            <a href="#" data-share="facebook">Facebook</a>
+                            <a href="#" data-share="x">X / Twitter</a>
+                            <button type="button" data-share="copy">Copiar link</button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- XADREZ -->
+
+                <article class="game-card" data-nome="xadrez">
+
+                    <div class="game-image">
+                        <img src="assets/img/xadrez.png" alt="Jogo Xadrez">
+                    </div>
+
+                    <div class="game-info">
+                        <h3>XADREZ</h3>
+                        <p>Use sua estratégia.</p>
+
+                        <div class="game-actions">
+
+                            <a href="jogos/projeto/xadrez.html"
+                               class="play-button">
+                                JOGAR
+                            </a>
+
+                            <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="icon-button"
+                               title="Ver código no GitHub"
+                               aria-label="Ver código do Xadrez no GitHub">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.51-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.59 1.21 3.22.92.1-.72.39-1.21.7-1.49-2.47-.28-5.07-1.24-5.07-5.51 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.28-2.6 5.23-5.08 5.5.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8z"/>
+                                </svg>
+                            </a>
+
+                            <button class="icon-button share-button"
+                                    title="Compartilhar Xadrez"
+                                    aria-label="Compartilhar Xadrez"
+                                    aria-expanded="false">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77l-7.12-4.14a3.1 3.1 0 0 0 0-1.42l7.05-4.1a3 3 0 1 0-.94-1.74L8 9.55a3 3 0 1 0 0 4.9l7.12 4.16a3 3 0 1 0 2.88-2.53z"/>
+                                </svg>
+                            </button>
+
+                        </div>
+
+                        <div class="share-menu">
+                            <a href="#" data-share="whatsapp">WhatsApp</a>
+                            <a href="#" data-share="facebook">Facebook</a>
+                            <a href="#" data-share="x">X / Twitter</a>
+                            <button type="button" data-share="copy">Copiar link</button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- LABIRINTO -->
+
+                <article class="game-card" data-nome="labirinto">
+
+                    <div class="game-image">
+                        <img src="assets/img/labirinto.png" alt="Jogo Labirinto">
+                    </div>
+
+                    <div class="game-info">
+                        <h3>LABIRINTO</h3>
+                        <p>Encontre a saída.</p>
+
+                        <div class="game-actions">
+
+                            <button class="play-button disabled" disabled>
+                                EM BREVE
+                            </button>
+
+                            <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="icon-button"
+                               title="Ver código no GitHub"
+                               aria-label="Ver código do Labirinto no GitHub">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.51-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.59 1.21 3.22.92.1-.72.39-1.21.7-1.49-2.47-.28-5.07-1.24-5.07-5.51 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.28-2.6 5.23-5.08 5.5.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8z"/>
+                                </svg>
+                            </a>
+
+                            <button class="icon-button share-button"
+                                    title="Compartilhar Labirinto"
+                                    aria-label="Compartilhar Labirinto"
+                                    aria-expanded="false">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77l-7.12-4.14a3.1 3.1 0 0 0 0-1.42l7.05-4.1a3 3 0 1 0-.94-1.74L8 9.55a3 3 0 1 0 0 4.9l7.12 4.16a3 3 0 1 0 2.88-2.53z"/>
+                                </svg>
+                            </button>
+
+                        </div>
+
+                        <div class="share-menu">
+                            <a href="#" data-share="whatsapp">WhatsApp</a>
+                            <a href="#" data-share="facebook">Facebook</a>
+                            <a href="#" data-share="x">X / Twitter</a>
+                            <button type="button" data-share="copy">Copiar link</button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- SUDOKU -->
+
+                <article class="game-card" data-nome="sudoku">
+
+                    <div class="game-image">
+                        <img src="assets/img/sudoku.png" alt="Jogo Sudoku">
+                    </div>
+
+                    <div class="game-info">
+                        <h3>SUDOKU</h3>
+                        <p>Complete o tabuleiro.</p>
+
+                        <div class="game-actions">
+
+                            <button class="play-button disabled" disabled>
+                                EM BREVE
+                            </button>
+
+                            <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="icon-button"
+                               title="Ver código no GitHub"
+                               aria-label="Ver código do Sudoku no GitHub">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.51-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.59 1.21 3.22.92.1-.72.39-1.21.7-1.49-2.47-.28-5.07-1.24-5.07-5.51 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.28-2.6 5.23-5.08 5.5.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8z"/>
+                                </svg>
+                            </a>
+
+                            <button class="icon-button share-button"
+                                    title="Compartilhar Sudoku"
+                                    aria-label="Compartilhar Sudoku"
+                                    aria-expanded="false">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77l-7.12-4.14a3.1 3.1 0 0 0 0-1.42l7.05-4.1a3 3 0 1 0-.94-1.74L8 9.55a3 3 0 1 0 0 4.9l7.12 4.16a3 3 0 1 0 2.88-2.53z"/>
+                                </svg>
+                            </button>
+
+                        </div>
+
+                        <div class="share-menu">
+                            <a href="#" data-share="whatsapp">WhatsApp</a>
+                            <a href="#" data-share="facebook">Facebook</a>
+                            <a href="#" data-share="x">X / Twitter</a>
+                            <button type="button" data-share="copy">Copiar link</button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- NONOGRAMA -->
+
+                <article class="game-card" data-nome="nonograma">
+
+                    <div class="game-image">
+                        <img src="assets/img/nonograma.png" alt="Jogo Nonograma">
+                    </div>
+
+                    <div class="game-info">
+                        <h3>NONOGRAMA</h3>
+                        <p>Resolva o desafio.</p>
+
+                        <div class="game-actions">
+
+                            <button class="play-button disabled" disabled>
+                                EM BREVE
+                            </button>
+
+                            <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="icon-button"
+                               title="Ver código no GitHub"
+                               aria-label="Ver código do Nonograma no GitHub">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.51-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.59 1.21 3.22.92.1-.72.39-1.21.7-1.49-2.47-.28-5.07-1.24-5.07-5.51 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.28-2.6 5.23-5.08 5.5.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8z"/>
+                                </svg>
+                            </a>
+
+                            <button class="icon-button share-button"
+                                    title="Compartilhar Nonograma"
+                                    aria-label="Compartilhar Nonograma"
+                                    aria-expanded="false">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77l-7.12-4.14a3.1 3.1 0 0 0 0-1.42l7.05-4.1a3 3 0 1 0-.94-1.74L8 9.55a3 3 0 1 0 0 4.9l7.12 4.16a3 3 0 1 0 2.88-2.53z"/>
+                                </svg>
+                            </button>
+
+                        </div>
+
+                        <div class="share-menu">
+                            <a href="#" data-share="whatsapp">WhatsApp</a>
+                            <a href="#" data-share="facebook">Facebook</a>
+                            <a href="#" data-share="x">X / Twitter</a>
+                            <button type="button" data-share="copy">Copiar link</button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CAÇA PALAVRAS -->
+
+                <article class="game-card" data-nome="caça palavras">
+
+                    <div class="game-image">
+                        <img src="assets/img/cacapalavras.png" alt="Jogo Caça Palavras">
+                    </div>
+
+                    <div class="game-info">
+                        <h3>CAÇA PALAVRAS</h3>
+                        <p>Encontre as palavras.</p>
+
+                        <div class="game-actions">
+
+                            <button class="play-button disabled" disabled>
+                                EM BREVE
+                            </button>
+
+                            <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="icon-button"
+                               title="Ver código no GitHub"
+                               aria-label="Ver código do Caça Palavras no GitHub">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.51-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.59 1.21 3.22.92.1-.72.39-1.21.7-1.49-2.47-.28-5.07-1.24-5.07-5.51 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.28-2.6 5.23-5.08 5.5.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8z"/>
+                                </svg>
+                            </a>
+
+                            <button class="icon-button share-button"
+                                    title="Compartilhar Caça Palavras"
+                                    aria-label="Compartilhar Caça Palavras"
+                                    aria-expanded="false">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77l-7.12-4.14a3.1 3.1 0 0 0 0-1.42l7.05-4.1a3 3 0 1 0-.94-1.74L8 9.55a3 3 0 1 0 0 4.9l7.12 4.16a3 3 0 1 0 2.88-2.53z"/>
+                                </svg>
+                            </button>
+
+                        </div>
+
+                        <div class="share-menu">
+                            <a href="#" data-share="whatsapp">WhatsApp</a>
+                            <a href="#" data-share="facebook">Facebook</a>
+                            <a href="#" data-share="x">X / Twitter</a>
+                            <button type="button" data-share="copy">Copiar link</button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CORES -->
+
+                <article class="game-card" data-nome="cores">
+
+                    <div class="game-image">
+                        <img src="assets/img/cores.png" alt="Jogo Cores">
+                    </div>
+
+                    <div class="game-info">
+                        <h3>CORES</h3>
+                        <p>Teste sua percepção.</p>
+
+                        <div class="game-actions">
+
+                            <button class="play-button disabled" disabled>
+                                EM BREVE
+                            </button>
+
+                            <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="icon-button"
+                               title="Ver código no GitHub"
+                               aria-label="Ver código de Cores no GitHub">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.51-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.59 1.21 3.22.92.1-.72.39-1.21.7-1.49-2.47-.28-5.07-1.24-5.07-5.51 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.28-2.6 5.23-5.08 5.5.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8z"/>
+                                </svg>
+                            </a>
+
+                            <button class="icon-button share-button"
+                                    title="Compartilhar Cores"
+                                    aria-label="Compartilhar Cores"
+                                    aria-expanded="false">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77l-7.12-4.14a3.1 3.1 0 0 0 0-1.42l7.05-4.1a3 3 0 1 0-.94-1.74L8 9.55a3 3 0 1 0 0 4.9l7.12 4.16a3 3 0 1 0 2.88-2.53z"/>
+                                </svg>
+                            </button>
+
+                        </div>
+
+                        <div class="share-menu">
+                            <a href="#" data-share="whatsapp">WhatsApp</a>
+                            <a href="#" data-share="facebook">Facebook</a>
+                            <a href="#" data-share="x">X / Twitter</a>
+                            <button type="button" data-share="copy">Copiar link</button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- SNAKE -->
+
+                <article class="game-card" data-nome="snake">
+
+                    <div class="game-image">
+                        <img src="assets/img/snake.png" alt="Jogo Snake">
+                    </div>
+
+                    <div class="game-info">
+                        <h3>SNAKE</h3>
+                        <p>Desafie seus reflexos.</p>
+
+                        <div class="game-actions">
+
+                            <button class="play-button disabled" disabled>
+                                EM BREVE
+                            </button>
+
+                            <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="icon-button"
+                               title="Ver código no GitHub"
+                               aria-label="Ver código do Snake no GitHub">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.51-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.59 1.21 3.22.92.1-.72.39-1.21.7-1.49-2.47-.28-5.07-1.24-5.07-5.51 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.28-2.6 5.23-5.08 5.5.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8z"/>
+                                </svg>
+                            </a>
+
+                            <button class="icon-button share-button"
+                                    title="Compartilhar Snake"
+                                    aria-label="Compartilhar Snake"
+                                    aria-expanded="false">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77l-7.12-4.14a3.1 3.1 0 0 0 0-1.42l7.05-4.1a3 3 0 1 0-.94-1.74L8 9.55a3 3 0 1 0 0 4.9l7.12 4.16a3 3 0 1 0 2.88-2.53z"/>
+                                </svg>
+                            </button>
+
+                        </div>
+
+                        <div class="share-menu">
+                            <a href="#" data-share="whatsapp">WhatsApp</a>
+                            <a href="#" data-share="facebook">Facebook</a>
+                            <a href="#" data-share="x">X / Twitter</a>
+                            <button type="button" data-share="copy">Copiar link</button>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- JOGO DA VELHA -->
+
+                <article class="game-card" data-nome="snake">
+
+                    <div class="game-image">
+                        <img src="assets/img/jogodavelha.png" alt="Jogo da Velha">
+                    </div>
+
+                    <div class="game-info">
+                        <h3>Jogo da Velha</h3>
+                        <p>Desafie seus reflexos.</p>
+
+                        <div class="game-actions">
+
+                            <button class="play-button disabled" disabled>
+                                EM BREVE
+                            </button>
+
+                            <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="icon-button"
+                               title="Ver código no GitHub"
+                               aria-label="Ver código do jogo da velha no GitHub">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.51-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.59 1.21 3.22.92.1-.72.39-1.21.7-1.49-2.47-.28-5.07-1.24-5.07-5.51 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.28-2.6 5.23-5.08 5.5.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8z"/>
+                                </svg>
+                            </a>
+
+                            <button class="icon-button share-button"
+                                    title="Compartilhar Snake"
+                                    aria-label="Compartilhar Snake"
+                                    aria-expanded="false">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77l-7.12-4.14a3.1 3.1 0 0 0 0-1.42l7.05-4.1a3 3 0 1 0-.94-1.74L8 9.55a3 3 0 1 0 0 4.9l7.12 4.16a3 3 0 1 0 2.88-2.53z"/>
+                                </svg>
+                            </button>
+
+                        </div>
+
+                        <div class="share-menu">
+                            <a href="#" data-share="whatsapp">WhatsApp</a>
+                            <a href="#" data-share="facebook">Facebook</a>
+                            <a href="#" data-share="x">X / Twitter</a>
+                            <button type="button" data-share="copy">Copiar link</button>
+                        </div>
+                    </div>
+                </article>
+
+
+            </div>
+        </section>
+    </main>
+
+    <!-- RODAPÉ -->
+    <div id="footer"></div>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/componentes.js"></script>
+   
+</body>
+</html>
